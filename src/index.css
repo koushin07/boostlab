@@ -353,12 +353,12 @@ body {
 }
 
 /* Particle effects */
-.particle {
+/* .particle {
   position: absolute;
   pointer-events: none;
   border-radius: 50%;
   animation: float 4s ease-in-out infinite;
-}
+} */
 
 /* Gaming UI elements */
 .gaming-border {
