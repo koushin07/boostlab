@@ -17,7 +17,7 @@ export const Meteors = ({ number }: { number?: number }) => {
             animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + "s",
             animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + "s",
           }}
-        ></span>
+        >{ el}</span>
       ))}
     </>
   )
