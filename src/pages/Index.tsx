@@ -193,6 +193,7 @@ export default function IndexPage() {
   const imageUrls = [
     "/images/cod-hero-bg.jpg",
     "/images/discorted-mascot.png",
+    "/BoostLab/Artboard-3-100.jpg",
     ...lobbies.map((lobby) => lobby.image),
   ];
 
@@ -319,7 +320,7 @@ export default function IndexPage() {
             <div className="relative overflow-hidden rounded-lg">
               <OptimizedImage
                 alt="Boost Lab"
-                src="/boostLab/Artboard-3-100.jpg"
+                src="/BoostLab/Artboard-3-100.jpg"
                 className="h-12 w-full text-primary transition-all duration-500 drop-shadow-lg"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-purple-500/30 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm -z-10"></div>
