@@ -203,7 +203,7 @@ const HowToOrderSection = ({
                     <div key={step.id} className="relative">
                       <button
                         onClick={() => handleStepClick(index)}
-                        className={`w-full p-6 rounded-2xl flex items-center gap-4 transition-all duration-300 border-2 group ${
+                        className={`w-full p-4 rounded-2xl flex items-center gap-4 transition-all duration-300 border-2 group ${
                           isActive
                             ? "shadow-xl bg-accent"
                             : "hover:shadow-lg bg-primary/50"
@@ -217,7 +217,7 @@ const HowToOrderSection = ({
                         //       : "rgba(255, 255, 255, 0.1)",
                         //   }}
                       >
-                        <StepIcon className="w-8 h-8 text-white" />
+                        <StepIcon className="w-6 h-6 text-white" />
 
                         <div className="text-left flex-1">
                           <h3 className="text-xl font-semibold mb-1 text-white">
@@ -314,16 +314,16 @@ const HowToOrderSection = ({
                 </div>
               </div>
               <div className="bg-gradient-to-r from-primary/50 via-accent/10 to-primary/50 rounded-2xl p-8 border border-primary hover:border-primary/50 transition-all duration-300">
-                <h3 className="text-2xl text-center font-bold mb-4">
+                <h3 className="text-2xl font-primary text-center font-bold mb-4">
                   Ready to Dominate?
                 </h3>
-                <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
+                <p className="text-gray-400 font-supporting mb-6 max-w-2xl mx-auto">
                   Join thousands of satisfied customers who have boosted their
                   Call of Duty experience with our professional rank boosting
                   and camo unlock services.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                  <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#0ea5e9]/30 group">
+                  <Button className="font-primary bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-full  text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#0ea5e9]/30 group">
                     <DiscordIcon className="mr-2 h-10 w-10 group-hover:animate-pulse"/>
                     Join our Discord Server{" "}
                   </Button>

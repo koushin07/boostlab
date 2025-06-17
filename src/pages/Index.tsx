@@ -10,7 +10,7 @@ import {
   X,
   Gamepad2,
   Crosshair,
-  RocketIcon,
+
   type LucideProps,
 } from "lucide-react";
 import { useEffect, useState, useRef, useCallback } from "react";
@@ -283,7 +283,7 @@ export default function IndexPage() {
     { name: "Home", href: "/", sectionIndex: 0 },
     { name: "Reviews", href: "/#reviews", sectionIndex: 1 },
     { name: "Services", href: "/#services", sectionIndex: 3 },
-{ name: "How to Order", href: "/#how-to-order", sectionIndex: 4 },
+    { name: "How to Order", href: "/#how-to-order", sectionIndex: 4 },
   ];
 
   if (!imagesLoaded) {
@@ -424,13 +424,9 @@ export default function IndexPage() {
         setSelectedCategory={setSelectedCategory}
       />
       {/* Video Showcase Section */}
-      <VideoSection
-
-      />
+      <VideoSection />
       {/* Enhanced How it Works Section - Now with 5 steps */}
-      <HowToOrderSection
-        sectionsRef={sectionsRef}
-      />
+      <HowToOrderSection sectionsRef={sectionsRef} />
 
       {/* What Our Customers Say Section with Infinite Moving Cards */}
       <FeedbackSection duplicate={duplicate} sectionsRef={sectionsRef} />
@@ -444,12 +440,17 @@ export default function IndexPage() {
         className="w-full bg-gradient-to-t from-slate-800 to-slate-900 py-16 border-t border-slate-700 relative z-10"
       >
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
+          <div className="flex flex-col lg:flex-row justify-between items-around gap-8">
             <div className="flex items-center gap-2 group animate-fadeInUp">
-              <RocketIcon className="h-8 w-8 text-blue-500 group-hover:animate-rocket-glow transition-all duration-300" />
+               <OptimizedImage
+                alt="Boost Lab"
+                src="/BoostLab/Artboard-3.png"
+                className="h-14  w w-full text-primary transition-all duration-500 drop-shadow-lg"
+              />
+              {/* <RocketIcon className="h-8 w-8 text-blue-500 group-hover:animate-rocket-glow transition-all duration-300" />
               <span className="text-2xl font-bold group-hover:text-blue-500 transition-colors duration-300">
                 BOOST LAB
-              </span>
+              </span> */}
             </div>
             <nav className="flex flex-wrap justify-center gap-6 animate-fadeInUp delay-200">
               {navItems.map((item, index) => (
