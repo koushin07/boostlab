@@ -185,8 +185,8 @@ p, span, div,
   to {
     transform: translate(calc(-50% - 0.5rem));
   }
-
 }
+
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -407,6 +407,7 @@ body {
   border-radius: 50%;
   animation: float 4s ease-in-out infinite;
 }
+
 .floating-elements * {
   pointer-events: none !important;
   user-select: none;
@@ -450,5 +451,3 @@ body {
 .btn-gaming:hover::before {
   left: 100%;
 }
-
-
