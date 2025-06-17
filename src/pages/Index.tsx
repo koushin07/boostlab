@@ -429,7 +429,6 @@ export default function IndexPage() {
       />
       {/* Enhanced How it Works Section - Now with 5 steps */}
       <HowToOrderSection
-        scrollToSection={scrollToSection}
         sectionsRef={sectionsRef}
       />
 

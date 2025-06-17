@@ -26,12 +26,12 @@ export interface Step {
 
 interface HowToOrderSectionProps {
   sectionsRef: React.RefObject<HTMLElement[]>;
-  scrollToSection: (index: number) => void;
+
 }
 
 const HowToOrderSection = ({
   sectionsRef,
-  scrollToSection,
+
 }: HowToOrderSectionProps) => {
   const [activeStep, setActiveStep] = useState(0);
   const [progress, setProgress] = useState(0);
