@@ -185,6 +185,7 @@ p, span, div,
   to {
     transform: translate(calc(-50% - 0.5rem));
   }
+
 }
 @keyframes slideDown {
   from {
@@ -449,3 +450,5 @@ body {
 .btn-gaming:hover::before {
   left: 100%;
 }
+
+

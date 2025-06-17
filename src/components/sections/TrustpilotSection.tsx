@@ -1,18 +1,16 @@
 import type { Trustpilot } from "@/types/trustpilot";
-import { Star } from "lucide-react";
 import React from "react";
-import { InfiniteMovingCards } from "../ui/infinite-moving-card";
 import type { testimonial } from "@/pages/Index";
+import TrustBox from "../TrustPilotContainer";
 
 interface TrustpilotProps {
   sectionsRef: React.RefObject<HTMLElement[]>;
   trustpilotData: Trustpilot;
-  duplicate: testimonial[]
+  duplicate: testimonial[];
 }
+
 const TrustpilotSection = ({
   sectionsRef,
-  trustpilotData,
-  duplicate,
 }: TrustpilotProps) => {
   return (
     <section
@@ -20,12 +18,17 @@ const TrustpilotSection = ({
         if (el) sectionsRef.current[1] = el;
       }}
       id="trustpilot"
-      className="w-full  bg-gradient-to-b from-background via-primary/40 to-background py-20 relative z-10"
+      className="w-full bg-gradient-to-b from-background via-primary/40 to-background py-20 relative z-10"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          {/* Trustpilot Widget */}
-          <div className="flex flex-col items-center gap-6  animate-fadeInUp delay-200">
+          {/* Trustpilot Widget using TrustBox component */}
+          <div className="flex justify-center text-xl">
+            <TrustBox />
+          </div>
+
+          {/* Alternative: Simple star rating display using your data */}
+          {/* <div className="flex flex-col items-center gap-6 animate-fadeInUp delay-200">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
                 <Star className="h-8 w-8 text-green-500 fill-current" />
@@ -56,17 +59,28 @@ const TrustpilotSection = ({
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Description */}
-          <div className="animate-fadeInUp delay-400 h-[40rem] rounded-md flex flex-col antialiased  dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
-            <InfiniteMovingCards
-              items={duplicate}
-              direction="right"
-              speed="slow"
-              pauseOnHover={true}
-              className="py-8"
-            />
+          <div className="max-w-4xl mx-auto space-y-6 text-gray-300 animate-fadeInUp delay-400">
+            <p className="text-base leading-relaxed">
+              Welcome to Boost Lab, your one-stop shop for all your gaming
+              needs! Are you tired of grinding to get to the next level? Skip
+              the hassle with our in-game Currencies, Modded Accounts and
+              Boosts, and start playing with an advantage! Explore our Modded
+              Accounts and Boosts for games including Call of Duty, Forza
+              Horizon 5, Valorant, EA FC 25 and more.
+            </p>
+            <p className="text-base leading-relaxed">
+              We strive for our services to cater to all gamers — which is why
+              we offer packages for Xbox, PS4/PS5, and PC — all delivered
+              promptly through a smooth and stress-free process.
+            </p>
+            <p className="text-base leading-relaxed">
+              We pride ourselves on providing an exceptional service, which is
+              reflected through our outstanding customer reviews. Browse our
+              catalogue and elevate your gaming experience today!
+            </p>
           </div>
         </div>
       </div>

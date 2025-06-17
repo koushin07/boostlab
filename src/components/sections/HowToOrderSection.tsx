@@ -5,16 +5,14 @@ import {
   MessageCircle,
   Ticket,
   Package,
-  Zap,
-  Trophy,
   Shield,
   Users,
-  Star,
-  Target,
+
 } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import OptimizedImage from "@/utils/OptimizedImage";
 import { Button } from "../ui/button";
+import DiscordIcon from "../icons/discord";
 
 export interface Step {
   id: number;
@@ -325,21 +323,9 @@ const HowToOrderSection = ({
                   and camo unlock services.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                  <Button
-                    onClick={() => scrollToSection(2)}
-                    className="bg-gradient-to-r from-[#0ea5e9] to-[#0284c7] hover:from-[#0284c7] hover:to-[#0369a1] text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#0ea5e9]/30 group"
-                  >
-                    <Zap className="mr-2 h-5 w-5 group-hover:animate-pulse" />
-                    Start Your Boost Now
-                    <Trophy className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-                  </Button>
-                  <Button
-                    onClick={() => scrollToSection(3)}
-                    className="bg-gradient-to-r from-[#f59e0b] to-[#d97706] hover:from-[#d97706] hover:to-[#b45309] text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#f59e0b]/30 group"
-                  >
-                    <Target className="mr-2 h-5 w-5 group-hover:animate-pulse" />
-                    Unlock Camos
-                    <Trophy className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                  <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#0ea5e9]/30 group">
+                    <DiscordIcon className="mr-2 h-10 w-10 group-hover:animate-pulse"/>
+                    Join our Discord Server{" "}
                   </Button>
                 </div>
                 <div className="flex items-center gap-4 text-sm text-gray-400 justify-center flex-wrap">
@@ -351,10 +337,10 @@ const HowToOrderSection = ({
                     <Users className="h-4 w-4 text-[#0ea5e9]" />
                     <span>24/7 Support</span>
                   </div>
-                  <div className="flex items-center gap-1">
+                  {/* <div className="flex items-center gap-1">
                     <Star className="h-4 w-4 text-[#fbbf24]" />
-                    <span>4.9/5 Rating</span>
-                  </div>
+                    <span>4./5 Rating</span>
+                  </div> */}
                 </div>
               </div>
             </div>

@@ -25,6 +25,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import useImagePreloader from "@/utils/ImagePreloader";
 import { LoadingScreen } from "@/components/loadingScreen";
 import OptimizedImage from "@/utils/OptimizedImage";
+import FeedbackSection from "@/components/sections/FeedbackSection";
 
 export interface Lobby {
   id: string;
@@ -280,10 +281,9 @@ export default function IndexPage() {
 
   const navItems = [
     { name: "Home", href: "/", sectionIndex: 0 },
-    { name: "Services", href: "/#services", sectionIndex: 3 },
-    { name: "How to Order", href: "/#how-to-order", sectionIndex: 4 },
     { name: "Reviews", href: "/#reviews", sectionIndex: 1 },
-    { name: "Contact", href: "/#contact", sectionIndex: 6 },
+    { name: "Services", href: "/#services", sectionIndex: 3 },
+{ name: "How to Order", href: "/#how-to-order", sectionIndex: 4 },
   ];
 
   if (!imagesLoaded) {
@@ -423,17 +423,18 @@ export default function IndexPage() {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-
-      {/* Enhanced How to Order Section - Now with 5 steps */}
-      <HowToOrderSection scrollToSection={scrollToSection} sectionsRef={sectionsRef} />
       {/* Video Showcase Section */}
       <VideoSection
-        sectionsRef={sectionsRef}
-        videoType="youtube"
-        youtubeId="U87qW0tsV8M"
+
       />
+      {/* Enhanced How it Works Section - Now with 5 steps */}
+      <HowToOrderSection
+        scrollToSection={scrollToSection}
+        sectionsRef={sectionsRef}
+      />
+
       {/* What Our Customers Say Section with Infinite Moving Cards */}
-      {/* <FeedbackSection duplicate={duplicate} sectionsRef={sectionsRef} /> */}
+      <FeedbackSection duplicate={duplicate} sectionsRef={sectionsRef} />
 
       {/* Enhanced Footer */}
       <footer

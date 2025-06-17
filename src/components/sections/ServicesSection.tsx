@@ -241,6 +241,60 @@ const ServicesSection = ({
           </div>
         </div>
       )}
+
+      {/* Enhanced Promotional Camo Banner */}
+      <div className="mt-16 animate-fadeInUp delay-300">
+        <div className="relative overflow-hidden border-white rounded-3xl bg-gradient-to-r from-background via-primary to-accent  border">
+          {/* Animated background effects */}
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 via-transparent to-blue-600/10"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-400/5 via-transparent to-transparent"></div>
+
+          <div className="relative flex flex-col lg:flex-row items-center justify-between p-8 lg:p-12 gap-8">
+
+
+            {/* Center - Enhanced text content */}
+            <div className="flex-1 text-center lg:text-left lg:px-8">
+              <h3 className="text-3xl font-primary lg:text-4xl font-bold text-white mb-3 ">
+                Looking for Camo Boosting?
+              </h3>
+              <p className="text-slate-300 font-supporting text-lg lg:text-xl font-medium opacity-90 leading-relaxed">
+                Unlock Dark Matter, Nebula, Abyss & other special camouflages
+              </p>
+
+              {/* Additional features list */}
+              <div className="hidden lg:flex items-center gap-6 mt-4 text-sm text-slate-400">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span>Fast Delivery</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                  <span>Account Safe</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                  <span>24/7 Support</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right side - Enhanced CTA button */}
+            <div className="shrink-0">
+              <Button className="relative group bg-background hover:from-background/60 cursor-pointer  text-white px-8 py-4 rounded-2xl text-lg ">
+                <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative flex items-center gap-3">
+                  <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                  <span>Check our offers</span>
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+              </Button>
+            </div>
+          </div>
+
+          {/* Bottom accent line */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-400/50 to-transparent"></div>
+        </div>
+      </div>
     </section>
   );
 };
