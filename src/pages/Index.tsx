@@ -10,7 +10,6 @@ import {
   X,
   Gamepad2,
   Crosshair,
-
   type LucideProps,
 } from "lucide-react";
 import { useEffect, useState, useRef, useCallback } from "react";
@@ -440,17 +439,17 @@ export default function IndexPage() {
         className="w-full bg-gradient-to-t from-slate-800 to-slate-900 py-16 border-t border-slate-700 relative z-10"
       >
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row justify-between items-around gap-8">
+          <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
             <div className="flex items-center gap-2 group animate-fadeInUp">
-               <OptimizedImage
+              <OptimizedImage
                 alt="Boost Lab"
                 src="/BoostLab/Artboard-3.png"
-                className="h-14  w w-full text-primary transition-all duration-500 drop-shadow-lg"
+                className="h-14 w-auto max-w-full object-contain text-primary transition-all duration-500 drop-shadow-lg"
               />
               {/* <RocketIcon className="h-8 w-8 text-blue-500 group-hover:animate-rocket-glow transition-all duration-300" />
-              <span className="text-2xl font-bold group-hover:text-blue-500 transition-colors duration-300">
-                BOOST LAB
-              </span> */}
+  <span className="text-2xl font-bold group-hover:text-blue-500 transition-colors duration-300">
+    BOOST LAB
+  </span> */}
             </div>
             <nav className="flex flex-wrap justify-center gap-6 animate-fadeInUp delay-200">
               {navItems.map((item, index) => (
