@@ -2,13 +2,12 @@ import React from "react";
 import { InfiniteMovingCards } from "../ui/infinite-moving-card";
 import type { testimonial } from "@/pages/Index";
 
-
 interface FeedbackProps {
-    sectionsRef: React.MutableRefObject<HTMLElement[]>;
-    duplicate: testimonial[];
+  sectionsRef: React.MutableRefObject<HTMLElement[]>;
+  duplicate: testimonial[];
 }
 
-const FeedbackSection = ({ duplicate, sectionsRef}:FeedbackProps) => {
+const FeedbackSection = ({ duplicate, sectionsRef }: FeedbackProps) => {
   return (
     <section
       ref={(el) => {
@@ -25,7 +24,7 @@ const FeedbackSection = ({ duplicate, sectionsRef}:FeedbackProps) => {
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto animate-fadeInUp delay-200">
             Don't just take our word for it. Here's what our satisfied customers
-            have to say about their experience with BOOST LAB.
+            have to say about their experience with Boost Lab.
           </p>
         </div>
 
@@ -39,9 +38,7 @@ const FeedbackSection = ({ duplicate, sectionsRef}:FeedbackProps) => {
             className="py-8"
           />
         </div>
-        <div className=" mb-4 text-center">
-
-        </div>
+        <div className=" mb-4 text-center"></div>
       </div>
     </section>
   );

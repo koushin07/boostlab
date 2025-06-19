@@ -4,7 +4,6 @@ import DiscordIcon from "@/components/icons/discord";
 import { Button } from "@/components/ui/button";
 import {
   Trophy,
-  Users,
   Zap,
   Menu,
   X,
@@ -58,7 +57,7 @@ export interface Step {
 const lobbies: Lobby[] = [
   {
     id: "bot-multiplayer",
-    title: "Multiplayer",
+    title: "Multiplayer Bot lobbies",
     image: "/images/bot-lobbies.jpg",
     alt: "Multiplayer",
     icon: <Gamepad2 className="h-6 w-6 text-blue-500 animate-pulse" />,
@@ -72,7 +71,7 @@ const lobbies: Lobby[] = [
   },
   {
     id: "ranked-multiplayer",
-    title: "Multiplayer Ranked",
+    title: "Multiplayer Ranked Bot lobbies",
     image: "/images/multiplayer.jpeg",
     alt: "Multiplayer Ranked",
     icon: <Crosshair className="h-6 w-6 text-red-500 animate-pulse" />,
@@ -87,7 +86,7 @@ const lobbies: Lobby[] = [
   },
   {
     id: "warzone",
-    title: "Warzone",
+    title: "Warzone Bot lobbies",
     image: "/images/warzone.jpg",
     alt: "Warzone",
     icon: <Zap className="h-6 w-6 text-yellow-500 animate-pulse" />,
@@ -102,7 +101,7 @@ const lobbies: Lobby[] = [
   },
   {
     id: "warzone-ranked",
-    title: "Warzone Ranked",
+    title: "Warzone Ranked Bot lobbies",
     image: "/images/warzone-rank.jpg",
     alt: "Warzone Rank",
     icon: <Trophy className="h-6 w-6 text-yellow-500 animate-pulse" />,
@@ -436,50 +435,162 @@ export default function IndexPage() {
           if (el) sectionsRef.current[6] = el;
         }}
         id="contact"
-        className="w-full bg-gradient-to-t from-slate-800 to-slate-900 py-16 border-t border-slate-700 relative z-10"
+        className="w-full bg-slate-800 border-t border-slate-700 relative"
       >
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
-            <div className="flex items-center gap-2 group animate-fadeInUp">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col lg:flex-row items-center mb-10 lg:mb-6">
+            <div className="">
               <OptimizedImage
                 alt="Boost Lab"
-                src="/BoostLab/Artboard-3.png"
-                className="h-14 w-auto max-w-full object-contain text-primary transition-all duration-500 drop-shadow-lg"
+                src="/BoostLab/Artboard-1.png"
+                className="h-20 lg:h-15   object-contain"
               />
-              {/* <RocketIcon className="h-8 w-8 text-blue-500 group-hover:animate-rocket-glow transition-all duration-300" />
-  <span className="text-2xl font-bold group-hover:text-blue-500 transition-colors duration-300">
-    BOOST LAB
-  </span> */}
-            </div>
-            <nav className="flex flex-wrap justify-center gap-6 animate-fadeInUp delay-200">
-              {navItems.map((item, index) => (
-                <button
-                  key={index}
-                  onClick={() => scrollToSection(item.sectionIndex)}
-                  className="hover:text-blue-500 transition-all duration-300 hover:scale-110 relative group"
-                >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
+            </div>{" "}
+            <span className="text-3xl font-primary  h-full font-bold text-white">BOOST LAB</span>
+          </div>
+          {/* Main Footer Content */}
+          <div className="grid grid-cols-1 font-supporting sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {/* Need Help Section */}
+            <div className="lg:pr-4">
+              <h3 className="text-lg font-semibold font-monserrat text-white mb-2">
+                Need help?
+              </h3>
+              <p className="text-gray-400 text-sm mb-4 leading-relaxed max-w-xs">
+                We are here to help you with any questions or order issues you
+                may have. No bots, only humans.
+              </p>
+              <div className="space-y-2 max-w-xs">
+                {/* <button className="w-full bg-slate-700 hover:bg-slate-600 text-white px-4 py-2.5 rounded-lg text-sm transition-colors duration-300 flex items-center justify-center gap-2">
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                  Send us an email
+                </button> */}
+                <button className="w-full bg-indigo-600 font-monserrat hover:bg-indigo-700 text-white px-4 py-2.5 rounded-lg text-sm transition-colors duration-300 flex items-center justify-center gap-2">
+                  <DiscordIcon className="h-4 w-4" />
+                  Join Discord
                 </button>
-              ))}
-            </nav>
-            <div className="flex gap-4 animate-fadeInUp delay-400">
-              <a
-                href="#"
-                className="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center hover:bg-indigo-700 hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-12 group shadow-lg"
-              >
-                <DiscordIcon className="h-6 w-6 group-hover:scale-110 group-hover:animate-pulse transition-transform duration-300" />
-              </a>
-              <a
-                href="#"
-                className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-12 group shadow-lg"
-              >
-                <Users className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
-              </a>
+              </div>
+            </div>
+
+            {/* Legal Section */}
+            <div >
+              <h3 className="text-lg font-semibold text-white mb-3">Legal</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                  >
+                    Terms & Conditions
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                  >
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                  >
+                    Cookies Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                  >
+                    Important Notice
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                  >
+                    Refund Policy
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Help Section */}
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-3">Help</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                  >
+                    My account
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                  >
+                    Messages
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                  >
+                    Support Centre
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                  >
+                    Discord Server
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Services Section */}
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-3">
+                Services
+              </h3>
+              <ul className="space-y-2">
+                {navItems.slice(0, 5).map((item, index) => (
+                  <li key={index}>
+                    <button
+                      onClick={() => scrollToSection(item.sectionIndex)}
+                      className="text-gray-400 hover:text-white text-sm transition-colors duration-300 text-left block"
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-          <div className="border-t border-slate-700 mt-12 pt-8 text-center text-sm text-gray-400 animate-fadeInUp delay-600">
-            <p>
+          {/* Copyright */}
+          <div className="border-t border-slate-700 mt-8 pt-6 text-center">
+            <p className="text-gray-400 text-sm">
               &copy; {new Date().getFullYear()} BOOST LAB. All rights reserved.
               | Professional Call of Duty Boosting Services
             </p>

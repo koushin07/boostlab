@@ -7,7 +7,6 @@ import {
   Package,
   Shield,
   Users,
-
 } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import OptimizedImage from "@/utils/OptimizedImage";
@@ -26,13 +25,9 @@ export interface Step {
 
 interface HowToOrderSectionProps {
   sectionsRef: React.RefObject<HTMLElement[]>;
-
 }
 
-const HowToOrderSection = ({
-  sectionsRef,
-
-}: HowToOrderSectionProps) => {
+const HowToOrderSection = ({ sectionsRef }: HowToOrderSectionProps) => {
   const [activeStep, setActiveStep] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -155,7 +150,7 @@ const HowToOrderSection = ({
             <div className="lg:hidden">
               {/* Active Step Card */}
               <div
-                className={`flex flex-col space-y-10 justify-center transition-all duration-500 ${
+                className={`flex flex-col  justify-center transition-all duration-500 ${
                   isTransitioning
                     ? "opacity-0 transform translate-y-8"
                     : "opacity-100 transform translate-y-0"
@@ -165,14 +160,14 @@ const HowToOrderSection = ({
                   <h1 className="text-lg text-accent font-primary">
                     {steps[activeStep].title}
                   </h1>
-                  <span className="font-supporting font-supporting">
+                  <span className="font-supporting text-sm">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                     Illum officia nisi minus dolor est error sint, reiciendis,
                     quam neque optio recusandae ad, sit temporibus ex illo
                     fugit? Adipisci, dolore quas!
                   </span>
                 </div>
-                <div className="relative w-full h-66 flex items-center justify-center">
+                <div className="relative w-full h-60 flex items-center justify-center">
                   {/* Main mascot container */}
                   <div className="relative z-10">
                     {/* Interactive mascot */}
@@ -203,24 +198,17 @@ const HowToOrderSection = ({
                     <div key={step.id} className="relative">
                       <button
                         onClick={() => handleStepClick(index)}
-                        className={`w-full p-4 rounded-2xl flex items-center gap-4 transition-all duration-300 border-2 group ${
+                        className={`w-full p-2 px-4 rounded-2xl flex items-center gap-4 transition-all duration-300 border-2 group ${
                           isActive
                             ? "shadow-xl bg-accent"
                             : "hover:shadow-lg bg-primary/50"
                         }`}
-                        //   style={{
-                        //     backgroundColor: isActive
-                        //       ? "#01719F"
-                        //       : "rgba(255, 255, 255, 0.05)",
-                        //     borderColor: isActive
-                        //       ? "#01719F"
-                        //       : "rgba(255, 255, 255, 0.1)",
-                        //   }}
+
                       >
-                        <StepIcon className="w-6 h-6 text-white" />
+                        <StepIcon className="w-5 h-5 text-white" />
 
                         <div className="text-left flex-1">
-                          <h3 className="text-xl font-semibold mb-1 text-white">
+                          <h3 className="text-base font-semibold mb-1 text-white">
                             {step.title}
                           </h3>
                         </div>
@@ -315,16 +303,14 @@ const HowToOrderSection = ({
               </div>
               <div className="bg-gradient-to-r from-primary/50 via-accent/10 to-primary/50 rounded-2xl p-8 border border-primary hover:border-primary/50 transition-all duration-300">
                 <h3 className="text-2xl font-primary text-center font-bold mb-4">
-                  Ready to Dominate?
+                  Ready to Boost your Account?
                 </h3>
                 <p className="text-gray-400 font-supporting mb-6 max-w-2xl mx-auto">
-                  Join thousands of satisfied customers who have boosted their
-                  Call of Duty experience with our professional rank boosting
-                  and camo unlock services.
+                  Join our community of thousands of satisfied customers who have boosted their Call of Duty accounts with our professional Bot Lobbies and Camo Unlock services.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
                   <Button className="font-primary bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-full  text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#0ea5e9]/30 group">
-                    <DiscordIcon className="mr-2 h-10 w-10 group-hover:animate-pulse"/>
+                    <DiscordIcon className="mr-2 h-10 w-10 group-hover:animate-pulse" />
                     Join our Discord Server{" "}
                   </Button>
                 </div>
