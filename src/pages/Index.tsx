@@ -319,7 +319,7 @@ export default function IndexPage() {
               <OptimizedImage
                 alt="Boost Lab"
                 src="/BoostLab/Artboard-3-100.jpg"
-                className="h-12 w-full text-primary transition-all duration-500 drop-shadow-lg"
+                className="h-12 w-23 text-primary transition-all duration-500 drop-shadow-lg"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-purple-500/30 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm -z-10"></div>
               <div className="absolute inset-0 bg-primary/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
