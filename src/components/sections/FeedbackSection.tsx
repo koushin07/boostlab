@@ -1,4 +1,3 @@
-import React from "react";
 import { InfiniteMovingCards } from "../ui/infinite-moving-card";
 import type { testimonial } from "@/pages/Index";
 
