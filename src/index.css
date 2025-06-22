@@ -470,7 +470,7 @@ body {
 }
 
 .trustbox-container .trustpilot-widget {
-  transform: scale(1.3);
+  transform: scale(1.4);
   transform-origin: center;
 }
 
@@ -481,6 +481,6 @@ body {
   }
 
   .trustbox-container .trustpilot-widget {
-    transform: scale(1.5);
+    transform: scale(1.6);
   }
 }

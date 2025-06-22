@@ -62,7 +62,7 @@ const TrustpilotSection = ({
           </div> */}
 
           {/* Description */}
-          <div className="max-w-4xl font-supporting mx-auto space-y-6 text-gray-300 animate-fadeInUp delay-400">
+          {/* <div className="max-w-4xl font-supporting mx-auto space-y-6 text-gray-300 animate-fadeInUp delay-400">
             <p className="text-base leading-relaxed">
               Welcome to Boost Lab, your one-stop shop for all your gaming
               needs! Are you tired of grinding to get to the next level? Skip
@@ -81,7 +81,7 @@ const TrustpilotSection = ({
               reflected through our outstanding customer reviews. Browse our
               catalogue and elevate your gaming experience today!
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

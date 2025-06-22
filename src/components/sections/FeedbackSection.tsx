@@ -3,17 +3,14 @@ import { InfiniteMovingCards } from "../ui/infinite-moving-card";
 import type { testimonial } from "@/pages/Index";
 
 interface FeedbackProps {
-  sectionsRef: React.MutableRefObject<HTMLElement[]>;
-  duplicate: testimonial[];
+    duplicate: testimonial[];
 }
 
-const FeedbackSection = ({ duplicate, sectionsRef }: FeedbackProps) => {
+const FeedbackSection = ({ duplicate }: FeedbackProps) => {
   return (
     <section
-      ref={(el) => {
-        if (el) sectionsRef.current[2] = el;
-      }}
-      id="customer-reviews"
+
+      id="reviews"
       className="w-full py-20 relative z-10 overflow-hidden"
     >
       <div className="container mx-auto px-4">

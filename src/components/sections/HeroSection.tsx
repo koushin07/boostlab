@@ -1,5 +1,5 @@
 import OptimizedImage from "@/utils/OptimizedImage";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import { Play, Zap } from "lucide-react";
 
@@ -9,12 +9,18 @@ interface HeroSectionProps {
   mascotRef: React.RefObject<HTMLDivElement | null>;
 }
 const HeroSection = ({ sectionsRef, scrollToSection }: HeroSectionProps) => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (sectionRef.current) {
+      sectionsRef.current[0] = sectionRef.current;
+    }
+  }, [sectionsRef]);
   return (
     <section
-      ref={(el) => {
-        if (el) sectionsRef.current[0] = el;
-      }}
+      ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      id="home-section"
     >
       {/* 3D Background */}
       <div className="absolute inset-0 z-0">
@@ -58,7 +64,7 @@ const HeroSection = ({ sectionsRef, scrollToSection }: HeroSectionProps) => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Button
               onClick={() => scrollToSection(3)}
-              className="bg-accent hover:bg-accent/95 text-white px-8 py-6 rounded-full text-lg hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/30 animate-fadeInUp group font-semibold delay-1200"
+              className="bg-accent hover:bg-accent/95 text-white px-8 py-6 rounded-full text-lg hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/30 animate-fadeInUp group font-semibold "
             >
               <span className="group-hover:mr-2 transition-all duration-300">
                 View Services
@@ -68,7 +74,7 @@ const HeroSection = ({ sectionsRef, scrollToSection }: HeroSectionProps) => {
             <Button
               onClick={() => scrollToSection(4)}
               variant="outline"
-              className="border-primary text-white hover:bg-blue-500 hover:text-white px-8 py-6 rounded-full text-lg hover:scale-105 transition-all duration-300 animate-fadeInUp font-semibold delay-1400"
+              className="border-primary text-white hover:bg-blue-500 hover:text-white px-8 py-6 rounded-full text-lg hover:scale-105 transition-all duration-300 animate-fadeInUp font-semibold "
             >
               <Play className="mr-2 h-5 w-5" />
               How It Works
