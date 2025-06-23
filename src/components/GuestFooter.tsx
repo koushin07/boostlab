@@ -2,7 +2,6 @@ import OptimizedImage from "@/utils/OptimizedImage"
 import { Link } from "react-router-dom"
 import DiscordIcon from "./icons/discord"
 
-
 const GuestFooter = () => {
   return (
     <footer className="w-full bg-slate-800 border-t border-slate-700 relative">
@@ -15,14 +14,14 @@ const GuestFooter = () => {
         </div>
 
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 font-supporting sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {/* Need Help Section */}
-          <div className="lg:pr-4">
+        <div className="space-y-8 lg:space-y-0 lg:grid lg:grid-cols-4 lg:gap-8">
+          {/* Need Help Section - Full width on mobile */}
+          <div className="mx-auto lg:mx-0 lg:pr-4">
             <h3 className="text-lg font-semibold font-monserrat text-white mb-2">Need help?</h3>
-            <p className="text-gray-400 text-sm mb-4 leading-relaxed max-w-xs">
+            <p className="text-gray-400 text-sm mb-4 leading-relaxed max-w-xs mx-auto lg:mx-0">
               We are here to help you with any questions or order issues you may have. No bots, only humans.
             </p>
-            <div className="space-y-2 max-w-xs">
+            <div className="space-y-2 max-w-xs mx-auto lg:mx-0">
               <button className="w-full bg-indigo-600 font-monserrat hover:bg-indigo-700 text-white px-4 py-2.5 rounded-lg text-sm transition-colors duration-300 flex items-center justify-center gap-2">
                 <DiscordIcon className="h-4 w-4" />
                 Join Discord
@@ -30,94 +29,99 @@ const GuestFooter = () => {
             </div>
           </div>
 
-          {/* Legal Section - First Part */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-3">Legal</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/terms"
-                  className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
-                >
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/privacy"
-                  className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/cookies"
-                  className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
-                >
-                  Cookies Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Links Sections - 2x2 grid on mobile, 3 columns on desktop */}
+          <div className="lg:col-span-3">
+            <div className="grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-3">
+              {/* Legal Section */}
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-3">Legal</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      to="/terms"
+                      className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                    >
+                      Terms of Service
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/privacy"
+                      className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                    >
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/cookies"
+                      className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                    >
+                      Cookies Policy
+                    </Link>
+                  </li>
+                </ul>
+              </div>
 
-          {/* Legal Section - Second Part */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-3">Policies</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/non-affiliation"
-                  className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
-                >
-                  Non-Affiliation
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/refund"
-                  className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
-                >
-                  Refund Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
+              {/* Policies Section */}
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-3">Policies</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      to="/non-affiliation"
+                      className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                    >
+                      Non-Affiliation
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/refund"
+                      className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                    >
+                      Refund Policy
+                    </Link>
+                  </li>
+                </ul>
+              </div>
 
-          {/* Help Section */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-3">Help</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/account"
-                  className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
-                >
-                  My account
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/messages"
-                  className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
-                >
-                  Messages
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/support"
-                  className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
-                >
-                  Support Centre
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block">
-                  Discord Server
-                </a>
-              </li>
-            </ul>
+              {/* Help Section - Spans 2 columns on mobile, 1 on larger screens */}
+              <div className="col-span-2 lg:col-span-1">
+                <h3 className="text-lg font-semibold text-white mb-3">Help</h3>
+                <ul className="space-y-2 grid grid-cols-2 gap-x-4 lg:grid-cols-1 lg:gap-x-0">
+                  <li>
+                    <Link
+                      to="/account"
+                      className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                    >
+                      My account
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/messages"
+                      className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                    >
+                      Messages
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/support"
+                      className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block"
+                    >
+                      Support Centre
+                    </Link>
+                  </li>
+                  <li>
+                    <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors duration-300 block">
+                      Discord Server
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
