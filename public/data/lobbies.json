@@ -1,0 +1,62 @@
+[
+  {
+    "id": "bot-multiplayer",
+    "title": "Multiplayer Bot lobbies",
+    "image": "lobbies/Multiplayer-Bot-Lobbies.png",
+    "alt": "Multiplayer",
+    "icon": "Gamepad2",
+    "color": "#0ea5e9",
+    "price": "2.49",
+    "features": [
+      "Up to 400 kills per game",
+      "Complete Camo Challenges",
+      "Level Up Guns Fast"
+    ]
+  },
+  {
+    "id": "ranked-multiplayer",
+    "title": "Multiplayer Ranked Bot lobbies",
+    "image": "lobbies/Multiplayer-Ranked-Bot-Lobbies.png",
+    "alt": "Multiplayer Ranked",
+    "icon": "Crosshair",
+    "color": "#ef4444",
+    "price": "5.99",
+    "features": [
+      "Up to 100 kills per game",
+      "Complete Camo Challenges",
+      "Level Up Guns Fast"
+    ],
+    "animationDelay": "delay-100"
+  },
+  {
+    "id": "warzone",
+    "title": "Warzone Bot lobbies",
+    "image": "lobbies/Warzone-Bot-Lobbies.png",
+    "alt": "Warzone",
+    "icon": "Zap",
+    "color": "#fbbf24",
+    "price": "8.49",
+    "features": [
+      "Rank & Weapon Double XP",
+      "Instant Delivery & Redeem",
+      "Best Prices"
+    ],
+    "animationDelay": "delay-200"
+  },
+  {
+    "id": "warzone-ranked",
+    "title": "Warzone Ranked Bot lobbies",
+    "image": "lobbies/Warzone-Ranked-Bot-Lobbies.png",
+    "alt": "Warzone Rank",
+    "icon": "Trophy",
+    "tag": "New",
+    "color": "#fbbf24",
+    "price": "9.99",
+    "features": [
+      "Compete at higher levels",
+      "Earn rewards and badges",
+      "Exclusive ranked content"
+    ],
+    "animationDelay": "delay-300"
+  }
+]

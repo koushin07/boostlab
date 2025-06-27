@@ -9,8 +9,16 @@ import CookiesPolicy from "./pages/CookiesPolicy";
 import NonAffiliation from "./pages/NonAffiliation";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
+import { Crisp } from "crisp-sdk-web";
+import 'cloudinary-video-player/cld-video-player.min.css';
+
+import { useEffect } from "react";
+import Product from "./pages/Products";
 
 function App() {
+  useEffect(() => {
+    Crisp.configure("aa4e0420-3ef8-432b-a982-4197f503b799");
+  }, []);
   return (
     <TooltipProvider>
       <Toaster position="bottom-right" richColors closeButton />
@@ -26,6 +34,9 @@ function App() {
           <Route path="/non-affiliation" element={<NonAffiliation/>} />
           <Route path="/privacy" element={<PrivacyPolicy/>} />
           <Route path="/refund" element={<RefundPolicy/>} />
+
+          <Route path="/product/:id" element={<Product/>} />
+
           </Route>
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

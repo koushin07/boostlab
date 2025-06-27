@@ -1,11 +1,11 @@
-import type { Trustpilot } from "@/types/trustpilot";
+
 import React from "react";
 import type { testimonial } from "@/pages/Index";
 import TrustBox from "../TrustPilotContainer";
 
 interface TrustpilotProps {
   sectionsRef: React.RefObject<HTMLElement[]>;
-  trustpilotData: Trustpilot;
+
   duplicate: testimonial[];
 }
 
@@ -18,7 +18,7 @@ const TrustpilotSection = ({
         if (el) sectionsRef.current[1] = el;
       }}
       id="trustpilot"
-      className="w-full bg-gradient-to-b from-background via-primary/40 to-background py-20 relative z-10"
+      className="w-full bg-background py-20 relative z-10"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">

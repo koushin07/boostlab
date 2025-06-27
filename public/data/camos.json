@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Diamond Camo Unlock",
+    "price": "From €15.99",
+    "image": "/camos/Diamond.png",
+    "alt": "Gold Camo",
+    "features": [
+      "All weapon challenges completed",
+      "Fast completion time",
+      "Account safety guaranteed"
+    ],
+    "icon": "Star",
+    "color": "#fbbf24"
+  },
+  {
+    "title": "Dark Matter Camo Unlock",
+    "price": "From €39.99",
+    "image": "/camos/Dark_Matter.png",
+    "alt": "Galaxy Camo",
+    "features": [
+      "Multiple weapon categories",
+      "Professional completion",
+      "Progress tracking included"
+    ],
+    "icon": "Trophy",
+    "color": "#60a5fa"
+  },
+  {
+    "title": "Abyss Camo Unlock",
+    "price": "From €79.99",
+    "image": "/camos/Abyss.png",
+    "alt": "Gold Camo",
+    "features": [
+      "Ultimate camo challenges",
+      "Exclusive mastery rewards",
+      "Priority support included"
+    ],
+    "icon": "Zap",
+    "color": "#8b5cf6",
+    "tag": "Premium"
+  },
+  {
+    "title": "Nebula Camo Unlock",
+    "price": "From €79.99",
+    "image": "/camos/Nebula.png",
+    "alt": "Gold Camo",
+    "features": [
+      "Ultimate camo challenges",
+      "Exclusive mastery rewards",
+      "Priority support included"
+    ],
+    "icon": "Zap",
+    "color": "#8b5cf6",
+    "tag": "Premium"
+  }
+]

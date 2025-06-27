@@ -56,7 +56,7 @@ const HeroSection = ({ sectionsRef, scrollToSection }: HeroSectionProps) => {
               ACCOUNT
             </span>
           </h1>
-          <p className="text-gray-300 max-w-md mx-auto lg:mx-0 animate-fadeInUp text-lg leading-relaxed delay-1000">
+          <p className="text-white max-w-md mx-auto lg:mx-0 animate-fadeInUp text-lg leading-relaxed delay-1000">
             Purchase Professional Call of Duty Black Ops 6 boosting services for
             Multiplayer, Warzone and Ranked modes. All services offer 5 minute
             delivery times from our 24/7 support team.

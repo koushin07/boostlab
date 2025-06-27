@@ -121,7 +121,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: "Montserrat", system-ui, -apple-system, sans-serif;
-    font-style: italic;
+    /* font-style: italic; */
     font-weight: 300;
   }
 }
@@ -144,13 +144,13 @@
 .font-primary {
   font-family: "Montserrat", system-ui, -apple-system, sans-serif;
   font-weight: 900;
-  font-style: italic;
+
 }
 
 .font-supporting {
   font-family: "Montserrat", system-ui, -apple-system, sans-serif;
   font-weight: 300;
-  font-style: italic;
+
 }
 
 .font-monserrat {
@@ -384,7 +384,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   font-family: "Montserrat", system-ui, -apple-system, sans-serif;
-  font-style: italic;
+  /* font-style: italic; */
   font-weight: 300;
 }
 

@@ -1,6 +1,29 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect, useRef } from "react";
+import cloudinary from "cloudinary-video-player";
+
 
 const VideoSection = React.memo(() => {
+  const cloudinaryRef = useRef<any>(null);
+  const playerRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (cloudinaryRef.current) return;
+
+    cloudinaryRef.current = cloudinary;
+
+    const player = cloudinaryRef.current.videoPlayer(playerRef.current, {
+      cloud_name: "dxha6zybc",
+      secure: true,
+      controls: false,
+      muted: true,
+      loop: true,
+      autoplay: true,
+      autoplayMode: "on-scroll",
+    });
+    player.source("Vidsfinal2_ocvjzc");
+  }, []);
+
   return (
     <section className="w-full bg-gradient-to-b from-slate-900 to-slate-800 py-20 relative z-10">
       <div className="container mx-auto px-4">
@@ -28,55 +51,13 @@ const VideoSection = React.memo(() => {
             className="relative bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700 transition-all duration-500 ease-out"
           >
             <div className="aspect-video relative">
-              <iframe
-                src="https://player.cloudinary.com/embed/?cloud_name=dxha6zybc&public_id=a04viedlpp7mfxldfgkv&player[autoplay]=true&player[autoplayMode]=on-scroll&player[muted]=true&player[loop]=true&player[controls]=false&player[colors][base]=%23B23232"
-                width="100%"
-                height="100%"
-                style={{
-                  height: "auto",
-                  width: "100%",
-                  aspectRatio: 640 / 360,
-                }}
-                allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                allowFullScreen
-                frameBorder="0"
-              ></iframe>
-              {/* {videoType === "cloud" ? (
 
+              <video
+                ref={playerRef}
 
+                className="cld-video-player cld-fluid"
 
-                ) : (
-                  <>
-                    <video
-                      ref={videoRef}
-                      width="100%"
-                      height="100%"
-                      muted
-                      loop
-                      playsInline
-                      preload="auto"
-                      onLoadStart={handleLoadStart}
-                      onCanPlay={handleCanPlay}
-                      onError={handleError}
-                      onWaiting={handleWaiting}
-                      onPlaying={handlePlaying}
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        objectFit: "cover",
-                      }}
-                    >
-                      <source src={videoUrl} type="video/webm" />
-                      Your browser does not support the video tag.
-                    </video>
-                    {(isLoading || hasError) && (
-                      <div className="absolute inset-0 z-10">
-                        {LoadingFallback}
-                      </div>
-                    )}
-                  </>
-                )} */}
+              />
             </div>
           </div>
         </div>

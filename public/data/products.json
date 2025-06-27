@@ -1,0 +1,107 @@
+[
+
+  {
+    "id": "dark-matter-camo",
+    "title": "Dark Matter Camo Unlock",
+    "price": "149.99",
+    "image": "/camos/Dark_Matter.png",
+    "type": "camo",
+    "alt": "Galaxy Camo",
+    "features": [
+      "Unlocked on Your Account",
+      "100% Legitimate Hard Unlock",
+      "Same-Day Completion Time"
+    ]
+
+  },
+  {
+    "id": "abyss-camo",
+    "title": "Abyss Camo Unlock",
+    "price": "249.99",
+    "image": "/camos/Abyss.png",
+    "type": "camo",
+    "alt": "Gold Camo",
+    "features": [
+      "Unlocked on Your Account",
+      "100% Legitimate Hard Unlock",
+      "Ultra-Fast Completion Time"
+    ]
+  },
+  {
+    "id": "nebula-camo",
+    "title": "Nebula Camo Unlock",
+    "price": "249.99",
+    "image": "/camos/Nebula.png",
+    "type": "camo",
+    "alt": "Gold Camo",
+    "features": [
+      "Unlocked on Your Account",
+      "100% Legitimate Hard Unlock",
+      "Ultra-Fast Completion Time"
+    ]
+
+  },
+
+  {
+    "id": "bot-multiplayer",
+    "title": "Multiplayer Bot lobbies",
+    "image": "/lobbies/Multiplayer-Bot-Lobbies.png",
+    "alt": "Multiplayer",
+    "type": "boost",
+    "price": "3.99",
+    "features": [
+      "Up to 400 kills per game",
+      "Complete Camo Challenges",
+      "Level Up Guns Fast",
+      "Instant Delivery"
+    ]
+  },
+  {
+    "id": "ranked-multiplayer",
+    "title": "Multiplayer Ranked Bot lobbies",
+    "image": "/lobbies/Multiplayer-Ranked-Bot-Lobbies.png",
+    "alt": "Multiplayer Ranked",
+    "type": "boost",
+
+    "price": "5.99",
+    "features": [
+      "Gain SR Rapidly",
+      "Achieve your Dream Rank",
+      "100% Safe and Secure",
+      "Instant Delivery"
+    ]
+  },
+  {
+    "id": "warzone",
+    "title": "Warzone Bot lobbies",
+    "image": "/lobbies/Warzone-Bot-Lobbies.png",
+    "alt": "Warzone",
+    "type": "boost",
+
+
+    "price": "5.99",
+    "features": [
+      "Up to 400 Kills Per Game",
+      "Complete Camo Challenges",
+      "Level Up Guns Fast",
+      "Instant Delivery"
+    ]
+
+  },
+  {
+    "id": "warzone-ranked",
+    "title": "Warzone Ranked Bot lobbies",
+    "image": "/lobbies/Warzone-Ranked-Bot-Lobbies.png",
+    "alt": "Warzone Rank",
+    "type": "boost",
+    "tag": "Coming soon",
+    "price": "9.99",
+    "features": [
+      "Compete at higher levels",
+      "Earn rewards and badges",
+      "Exclusive ranked content"
+    ]
+  }
+]
+
+

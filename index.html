@@ -2,7 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" sizes="32x32" href="/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- TrustBox script -->
     <script
@@ -10,6 +23,17 @@
       src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
       async
     ></script>
+    <script type="text/javascript">
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = "aa4e0420-3ef8-432b-a982-4197f503b799";
+      (function () {
+        d = document;
+        s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+      })();
+    </script>
     <!-- End TrustBox script -->
     <title>Boost Lab</title>
   </head>
