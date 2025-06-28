@@ -2,8 +2,11 @@
 import React, { useEffect, useRef } from "react";
 import cloudinary from "cloudinary-video-player";
 
+interface VideoSectionProps {
+  sectionsRef: React.RefObject<HTMLElement[]>;
+}
 
-const VideoSection = React.memo(() => {
+const VideoSection = React.memo(({ sectionsRef} : VideoSectionProps) => {
   const cloudinaryRef = useRef<any>(null);
   const playerRef = useRef<HTMLVideoElement>(null);
 
@@ -25,7 +28,11 @@ const VideoSection = React.memo(() => {
   }, []);
 
   return (
-    <section className="w-full bg-gradient-to-b from-slate-900 to-slate-800 py-20 relative z-10">
+    <section
+      ref={(el) => {
+        if (el) sectionsRef.current[4] = el;
+      }}
+      className="w-full pb-40 bg-gradient-to-b from-slate-900 to-slate-800 py-10 relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-6xl font-bold mb-6 animate-fadeInUp">

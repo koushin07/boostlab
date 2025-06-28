@@ -1,0 +1,57 @@
+/* Infinite Scroll Animation Styles */
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 40s linear infinite;
+}
+
+.pause-animation {
+  animation-play-state: paused;
+}
+
+.hover\:pause-animation:hover {
+  animation-play-state: paused;
+}
+
+/* Optional: Add more scroll-related animations here */
+@keyframes infinite-scroll-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-infinite-scroll-reverse {
+  animation: infinite-scroll-reverse 40s linear infinite;
+}
+
+/* Fade edge effects */
+.scroll-fade-edges::before,
+.scroll-fade-edges::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.scroll-fade-edges::before {
+  left: 0;
+  background: linear-gradient(to right, hsl(var(--background)), transparent);
+}
+
+.scroll-fade-edges::after {
+  right: 0;
+  background: linear-gradient(to left, hsl(var(--background)), transparent);
+}

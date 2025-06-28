@@ -1,8 +1,12 @@
+"use client";
+
 import OptimizedImage from "@/utils/OptimizedImage";
-import React from "react";
-import { ArrowRight, Clock } from "lucide-react";
+import type React from "react";
+import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
+import ComingSoonCard from "./ComingSoonCard";
 
 interface ServiceCardProps {
   id: string;
@@ -28,115 +32,128 @@ const ServiceCard = ({
   tag,
 }: ServiceCardProps) => {
   const navigate = useNavigate();
+  const [imageLoaded, setImageLoaded] = useState(false);
   const isComingSoon = tag?.toLowerCase() === "coming soon";
 
   if (isComingSoon) {
     return (
-      <div className="card-gaming border animate-fadeInUp relative overflow-hidden">
-        {/* Coming Soon Overlay */}
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-10 flex items-center justify-center">
-          <div className="text-center space-y-4">
-            <Clock className="h-12 w-12 text-accent mx-auto animate-pulse" />
-            <div>
-              <h3 className="text-xl font-bold text-white font-primary mb-2">
-                {title}
-              </h3>
-              <p className="text-accent font-semibold text-lg">Coming Soon</p>
-              <p className="text-white/80 text-sm mt-2">
-                Stay tuned for updates
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Background Image (blurred) */}
-        <div className="relative h-48 overflow-hidden">
-          <OptimizedImage
-            src={image}
-            alt={alt}
-            className={`w-full h-full blur-sm scale-105
-              ${type === "camo" && "object-[100%_30%]"}
-              object-cover opacity-50`}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-black/20" />
-        </div>
-
-        <div className="p-6 opacity-50">
-          <div className="space-y-3 mb-6">
-            {features.map((feature, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
-                <p className="text-sm text-gray-400">{feature}</p>
-              </div>
-            ))}
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-lg font-bold text-gray-400">From ${price}</span>
-            <Button
-              disabled
-              className="btn-primary cursor-not-allowed bg-gray-600 rounded-bl-3xl rounded-tr-3xl opacity-50"
-            >
-              <span>Coming Soon</span>
-            </Button>
-          </div>
-        </div>
-      </div>
+      <ComingSoonCard
+        icon={icon}
+        tag={tag}
+        alt={alt}
+        features={features}
+        image={image}
+        price={price}
+        title={title}
+        type={type}
+      />
     );
   }
 
+  // Determine image container classes based on type and screen size
+  const getImageContainerClasses = () => {
+    const baseClasses = "relative overflow-hidden rounded-t-lg";
+
+    if (type === "camo") {
+      // Responsive heights for camo images - taller on larger screens for better detail
+      return `${baseClasses} h-44 sm:h-52 md:h-56 lg:h-60 xl:h-64 2xl:h-72`;
+    } else {
+      // Standard responsive heights for lobby images
+      return `${baseClasses} h-40 sm:h-44 md:h-48 lg:h-52 xl:h-56`;
+    }
+  };
+
+  // Determine image classes based on type and screen size
+  const getImageClasses = () => {
+    const baseClasses =
+      "w-full h-full  duration-500 ease-out group-hover:scale-110  transition-transform";
+
+    if (type === "camo") {
+      // For camo images: responsive object positioning to show the best part of the camo
+      return `${baseClasses} object-cover object-center sm:object-[center_20%] md:object-[center_25%] lg:object-[center_30%] xl:object-[center_35%]`;
+    } else {
+      // For lobby images: center positioning with slight top bias to avoid cutting off important elements
+      return `${baseClasses} object-cover object-[center_45%] sm:object-[30%]`;
+    }
+  };
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
-    <div className={`card-gaming border hover-lift animate-fadeInUp`}>
-      <div className="relative h-48 overflow-hidden">
+    <div
+      className={`card-gaming border hover-lift animate-fadeInUp group relative`}
+    >
+      <div className={getImageContainerClasses()}>
         <OptimizedImage
           src={image}
           alt={alt}
-          className={`w-full h-full
-            ${type === "camo" && "object-[100%_30%]"}
-            object-cover group-hover:scale-110 transition-transform duration-700`}
+          className={getImageClasses()}
+          onLoad={handleImageLoad}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
+
+        {/* Enhanced gradient overlay that adapts to image loading */}
+        <div
+          className={`absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent transition-opacity duration-300 ${
+            imageLoaded ? "opacity-100" : "opacity-60"
+          }`}
+        />
+
         {tag && (
-          <div className="absolute top-4 right-4">
-            <span className="bg-accent text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
+            <span className="bg-accent text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm">
               {tag}
             </span>
           </div>
         )}
-        <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          {icon}
+
+        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-10 transform group-hover:scale-110">
+          <div className="text-white drop-shadow-lg">{icon}</div>
         </div>
+
+        {/* Enhanced hover overlay */}
+        <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
       </div>
-      <div className="p-6">
-        <div className="space-y-3 mb-6">
-          <h3 className="text-lg font-bold text-white font-primary">
+
+      <div className="p-4 sm:p-5 lg:p-6 relative">
+        <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+          <h3 className="text-base sm:text-lg font-bold text-white font-primary line-clamp-2 group-hover:text-accent transition-colors duration-300">
             {title}
           </h3>
-          {features.map((feature, i) => (
-            <div key={i} className="flex items-center gap-3">
-              <div
-                className="w-2 h-2 bg-accent rounded-full animate-pulse shadow-sm shadow-accent/50"
-                style={{ animationDelay: `${i * 0.2}s` }}
-              ></div>
-              <p
-                className={`text-sm ${
-                  i === 0 ? "text-accent" : "text-white"
-                }`}
-              >
-                {feature}
-              </p>
-            </div>
-          ))}
+
+          <div className="space-y-1.5 sm:space-y-2">
+            {features.map((feature, i) => (
+              <div key={i} className="flex items-start gap-2 sm:gap-3">
+                <div
+                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full animate-pulse shadow-sm shadow-accent/50 flex-shrink-0 mt-1.5 sm:mt-2"
+                  style={{ animationDelay: `${i * 0.2}s` }}
+                ></div>
+                <p
+                  className={`text-xs sm:text-sm leading-relaxed ${
+                    i === 0 ? "text-accent font-medium" : "text-white/90"
+                  }`}
+                >
+                  {feature}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex items-center justify-between">
-          <span className="text-lg font-bold text-white">From ${price}</span>
+
+        <div className="flex items-center justify-between gap-3 pt-2 border-t border-white/10">
+          <span className="text-sm sm:text-base lg:text-lg font-bold text-white flex-shrink-0">
+            From <span className="text-accent">${price}</span>
+          </span>
+
           <Button
             onClick={() => navigate(`/product/${id}`)}
-            className="btn-primary cursor-pointer bg-primary rounded-bl-3xl rounded-tr-3xl"
+            className="btn-primary cursor-pointer bg-primary hover:bg-primary/90 rounded-bl-3xl rounded-tr-3xl text-xs sm:text-sm px-3 sm:px-4 py-2 flex-shrink-0 group/btn transition-all duration-300 ease-out"
           >
-            <span className="group-hover:mr-2 transition-all duration-300">
+            <span className="group-hover/btn:mr-1 sm:group-hover/btn:mr-2 transition-all duration-300">
               Order
             </span>
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+            <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
           </Button>
         </div>
       </div>

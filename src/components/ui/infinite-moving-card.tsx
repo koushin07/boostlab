@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { testimonial } from "@/pages/Index";
+import type { Testimonial } from "@/pages/Index";
 import React, { useEffect, useState } from "react";
 
 export const InfiniteMovingCards = ({
@@ -11,7 +11,7 @@ export const InfiniteMovingCards = ({
   pauseOnHover = true,
   className,
 }: {
-  items: testimonial[];
+  items: Testimonial[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
   pauseOnHover?: boolean;

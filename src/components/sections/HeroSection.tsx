@@ -66,18 +66,18 @@ const HeroSection = ({ sectionsRef, scrollToSection }: HeroSectionProps) => {
               onClick={() => scrollToSection(3)}
               className="bg-accent hover:bg-accent/95 text-white px-8 py-6 rounded-full text-lg hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/30 animate-fadeInUp group font-semibold "
             >
-              <span className="group-hover:mr-2 transition-all duration-300">
+              <span className="group-hover:mr-2 pl-2 transition-all duration-300">
                 View Services
               </span>
-              <Zap className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+              <Zap className="ml- h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
             </Button>
             <Button
               onClick={() => scrollToSection(4)}
               variant="outline"
               className="border-primary text-white hover:bg-blue-500 hover:text-white px-8 py-6 rounded-full text-lg hover:scale-105 transition-all duration-300 animate-fadeInUp font-semibold "
             >
-              <Play className="mr-2 h-5 w-5" />
-              How It Works
+              <Play className="mr- h-5 w-5" />
+             Watch Demo
             </Button>
           </div>
         </div>

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -7,6 +9,7 @@ import {
   Star,
   ChevronLeft,
   ChevronRight,
+  Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +21,7 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import OptimizedImage from "@/utils/OptimizedImage";
 import type { Products } from "@/types/products";
 import {
@@ -27,51 +30,189 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import type { JSX } from "react/jsx-runtime"; // Import JSX to fix the undeclared variable error
 
-const steps = [
-  {
-    number: 1,
-    title: "Configure your boost",
-    description:
-      "Configure your boost and place an order. Chat with our 24/7 support if needed.",
-  },
-  {
-    number: 2,
-    title: "Get matched with a Booster",
-    description:
-      "You'll be automatically assigned to a professional booster who will reach out.",
-  },
-  {
-    number: 3,
-    title: "Boost in Progress",
-    description:
-      "Track progress through the Order Dashboard and communicate with your booster.",
-  },
-  {
-    number: 4,
-    title: "Receive and Confirm",
-    description:
-      "Get notified via email when completed. Check your account and confirm delivery.",
-  },
-];
+// Function to render text with bold formatting
+const renderTextWithBold = (text: string) => {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={index} className="font-semibold text-accent">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+};
 
-export default function ProductPageV1() {
+// Enhanced function to render FAQ answers dynamically
+const renderFAQAnswer = (faqItem: any) => {
+  const { answer, link } = faqItem;
+
+  // Split the answer into lines for processing
+  const lines = answer.split("\n").filter((line: string) => line.trim() !== "");
+
+  const renderLine = (line: string, index: number) => {
+    const trimmedLine = line.trim();
+
+    // Handle list items (lines starting with -)
+    if (trimmedLine.startsWith("-")) {
+      const listContent = trimmedLine.substring(1).trim();
+      return (
+        <li key={index} className="ml-4">
+          {renderTextWithBold(listContent)}
+        </li>
+      );
+    }
+
+    // Handle regular paragraphs
+    return (
+      <p key={index} className={index > 0 ? "mt-2" : ""}>
+        {renderTextWithBold(trimmedLine)}
+      </p>
+    );
+  };
+
+  const renderContent = () => {
+    const elements: JSX.Element[] = [];
+    let currentList: JSX.Element[] = [];
+    let listStartIndex = -1;
+
+    lines.forEach((line: string, index: number) => {
+      const trimmedLine = line.trim();
+
+      if (trimmedLine.startsWith("-")) {
+        // Start or continue a list
+        if (currentList.length === 0) {
+          listStartIndex = index;
+        }
+        currentList.push(renderLine(line, index));
+      } else {
+        // End current list if exists
+        if (currentList.length > 0) {
+          elements.push(
+            <ul
+              key={`list-${listStartIndex}`}
+              className="list-disc list-inside space-y-1 mt-2"
+            >
+              {currentList}
+            </ul>
+          );
+          currentList = [];
+          listStartIndex = -1;
+        }
+
+        // Add paragraph
+        elements.push(renderLine(line, index));
+      }
+    });
+
+    // Handle remaining list items
+    if (currentList.length > 0) {
+      elements.push(
+        <ul
+          key={`list-${listStartIndex}`}
+          className="list-disc list-inside space-y-1 mt-2"
+        >
+          {currentList}
+        </ul>
+      );
+    }
+
+    return elements;
+  };
+
+  // Handle Discord links
+  const handleDiscordLinks = (content: JSX.Element[]) => {
+    if (!link) return content;
+
+    return content.map((element, index) => {
+      if (element.type === "p" && element.props.children) {
+        // Handle both string and array of children
+        const children = element.props.children;
+
+        if (
+          typeof children === "string" &&
+          children.includes("Discord Server")
+        ) {
+          const parts = children.split("Discord Server");
+          return (
+            <p key={index} className={element.props.className}>
+              {renderTextWithBold(parts[0])}
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-secondary underline"
+              >
+                Discord Server
+              </a>
+              {parts[1] && renderTextWithBold(parts[1])}
+            </p>
+          );
+        } else if (Array.isArray(children)) {
+          // Handle case where children is an array (from renderTextWithBold)
+          const newChildren = children.map((child, childIndex) => {
+            if (typeof child === "string" && child.includes("Discord Server")) {
+              const parts = child.split("Discord Server");
+              return (
+                <span key={childIndex}>
+                  {parts[0]}
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-secondary underline"
+                  >
+                    Discord Server
+                  </a>
+                  {parts[1]}
+                </span>
+              );
+            }
+            return child;
+          });
+
+          return (
+            <p key={index} className={element.props.className}>
+              {newChildren}
+            </p>
+          );
+        }
+      }
+      return element;
+    });
+  };
+
+  const content = renderContent();
+  const finalContent = handleDiscordLinks(content);
+  console.log(finalContent);
+  return (
+    <div className="p-3 pt-2 pl-4">
+      <div className="font-supporting text-muted-foreground text-sm">
+        {finalContent}
+      </div>
+    </div>
+  );
+};
+
+export default function Product() {
   const [selectedLobbies, setSelectedLobbies] = useState("");
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
-  const [basePrice, setBasePrice] = useState(16.99);
-  const [totalPrice, setTotalPrice] = useState(16.99);
+  const [basePrice, setBasePrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const { id } = useParams();
   const [product, setProduct] = useState<Products | null>(null);
   const [relatedProducts, setRelatedProducts] = useState<Products[]>([]);
-
   const [panelTop, setPanelTop] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-
   const [isMobile, setIsMobile] = useState(false);
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const nextSlide = () => {
     if (currentSlide < relatedProducts.length - 3) {
@@ -103,7 +244,6 @@ export default function ProductPageV1() {
 
     checkMobile();
     window.addEventListener("resize", checkMobile);
-
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
@@ -113,34 +253,36 @@ export default function ProductPageV1() {
       .then((res) => {
         const lobbies = res.data;
         console.log("All lobbies:", lobbies);
-
         const foundLobby = lobbies.find((l: Products) => l.id === id) || null;
         console.log("Found lobby:", foundLobby);
         console.log("Looking for ID:", id);
-
         setProduct(foundLobby);
-
-        // Filter boost type products and exclude coming soon items
+        if(foundLobby && foundLobby.type === "camo")
+        setSelectedLobbies(foundLobby.price);
+        // Filter products and exclude items with "Coming soon" in their tag from related products
         const boostProducts = [
           // Start with similar type (excluding current)
           ...lobbies.filter(
             (lobby: Products) =>
               lobby.id !== id &&
-              !lobby.tag?.includes("Coming soon") &&
+              !(lobby.tag && lobby.tag.includes("Coming soon")) &&
               lobby.type === foundLobby?.type
           ),
           // Then add the rest that are not similar type (excluding current and already added)
           ...lobbies.filter(
             (lobby: Products) =>
               lobby.id !== id &&
-              !lobby.tag?.includes("Coming soon") &&
+              !(lobby.tag && lobby.tag.includes("Coming soon")) &&
               lobby.type !== foundLobby?.type
           ),
         ];
+
         setRelatedProducts(boostProducts);
 
-        if (foundLobby) {
-          setTotalPrice(Number.parseFloat(foundLobby.price));
+        if (foundLobby && foundLobby.pricing && foundLobby.pricing.length > 0) {
+          const firstPrice = Number.parseFloat(foundLobby.pricing[0].price);
+          setBasePrice(firstPrice);
+          setTotalPrice(firstPrice);
         }
       })
       .catch((error) => {
@@ -158,7 +300,6 @@ export default function ProductPageV1() {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       if (contentRef.current && panelRef.current) {
         // Panel follows scroll direction and gradually reveals bottom content
         const maxFollowDistance = 400; // Maximum distance panel can follow
@@ -189,13 +330,13 @@ export default function ProductPageV1() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobile, product]);
 
-  const lobbyOptions = [
-    { value: "1", label: "1 Bot Lobby", price: 16.99 },
-    { value: "5", label: "5 Bot Lobbies", price: 69.99 },
-    { value: "10", label: "10 Bot Lobbies", price: 129.99 },
-    { value: "25", label: "25 Bot Lobbies", price: 299.99 },
-    { value: "50", label: "50 Bot Lobbies", price: 454.98 },
-  ];
+  // Get lobby options from product pricing data
+  const lobbyOptions =
+    product?.pricing?.map((pricing, index) => ({
+      value: index.toString(),
+      label: pricing.quantity,
+      price: Number.parseFloat(pricing.price),
+    })) || [];
 
   const addons = [
     { id: "5h-xp", label: "5 Hours of Double Account XP Codes", price: 8.99 },
@@ -217,10 +358,12 @@ export default function ProductPageV1() {
   ];
 
   useEffect(() => {
-    const selected = lobbyOptions.find(
-      (option) => option.value === selectedLobbies
-    );
-    const newBasePrice = selected ? selected.price : 16.99;
+    const selectedIndex = Number.parseInt(selectedLobbies);
+    const selected = lobbyOptions[selectedIndex];
+    const newBasePrice = selected
+      ? selected.price
+      : lobbyOptions[0]?.price || 0;
+
     setBasePrice(newBasePrice);
 
     const addonTotal = selectedAddons.reduce((total, addonId) => {
@@ -229,7 +372,7 @@ export default function ProductPageV1() {
     }, 0);
 
     setTotalPrice(newBasePrice + addonTotal);
-  }, [selectedLobbies, selectedAddons]);
+  }, [selectedLobbies, selectedAddons, lobbyOptions]);
 
   const handleAddonChange = (addonId: string, checked: boolean) => {
     if (checked) {
@@ -243,6 +386,91 @@ export default function ProductPageV1() {
     return (
       <div className="min-h-screen bg-[#061928] flex items-center justify-center">
         <div className="text-white">Loading...</div>
+      </div>
+    );
+  }
+
+  // Check if product is coming soon
+  const isComingSoon = product.tag?.includes("Coming soon");
+
+  // If product is coming soon, show special coming soon page
+  if (isComingSoon) {
+    return (
+      <div className="min-h-screen bg-[#061928] flex items-center justify-center">
+        <div className="max-w-md mx-auto p-8">
+          <div className="relative bg-gradient-to-br from-card/30 to-card/10 backdrop-blur-sm border border-border/30 rounded-xl overflow-hidden">
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-black/60 z-10"></div>
+
+            {/* Background image */}
+            <div className="h-64 relative">
+              <OptimizedImage
+                src={product.image}
+                alt={product.alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Content overlay */}
+            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center p-6">
+              {/* Clock icon */}
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-red-600/20 rounded-full flex items-center justify-center mb-6">
+                <Clock className="w-8 h-8 text-orange-400" />
+              </div>
+
+              {/* Title */}
+              <h1 className="text-2xl font-primary text-white mb-2">
+                {product.title}
+              </h1>
+
+              {/* Features */}
+              <div className="space-y-1 mb-4">
+                {product.features.map((feature, index) => (
+                  <p
+                    key={index}
+                    className="text-sm font-supporting text-muted-foreground"
+                  >
+                    • {feature}
+                  </p>
+                ))}
+              </div>
+
+              {/* Coming Soon badge */}
+              <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg font-primary text-lg mb-2">
+                Coming Soon
+              </div>
+
+              {/* Subtitle */}
+              <p className="text-muted-foreground font-supporting mb-6">
+                Stay tuned for updates
+              </p>
+
+              {/* Pricing */}
+              <div className="text-muted-foreground/60 font-supporting">
+                <span className="line-through">From ${product.price}</span>
+              </div>
+
+              {/* Coming Soon button */}
+              <Button
+                disabled
+                className="mt-4 bg-muted/20 text-muted-foreground cursor-not-allowed"
+              >
+                Coming Soon
+              </Button>
+            </div>
+          </div>
+
+          {/* Back button */}
+          <div className="text-center mt-6">
+            <Button
+              variant="outline"
+              className="border-border text-white hover:bg-primary/10 bg-transparent"
+              onClick={() => window.history.back()}
+            >
+              ← Back to Products
+            </Button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -264,8 +492,8 @@ export default function ProductPageV1() {
             <h1 className="text-2xl font-primary text-white mb-2">
               {product.title}
             </h1>
-            <p className="text-sm font-supporting text-muted-foreground">
-              {product.features.slice(0, 2).join(" • ")}
+            <p className="text-base font-supporting text-muted-foreground leading-relaxed">
+              {renderTextWithBold(product.description)}
             </p>
           </div>
 
@@ -289,26 +517,28 @@ export default function ProductPageV1() {
               </div>
 
               {/* Bot Lobbies Selection */}
-              <div className="space-y-2">
-                <label className="text-sm font-primary text-white">
-                  Bot Lobbies:
-                </label>
-                <Select
-                  value={selectedLobbies}
-                  onValueChange={setSelectedLobbies}
-                >
-                  <SelectTrigger className="bg-muted/20 border-border text-white h-8">
-                    <SelectValue placeholder="Choose an option" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {lobbyOptions.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label} - ${option.price}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              {lobbyOptions.length > 0 && (
+                <div className="space-y-2">
+                  <label className="text-sm font-primary text-white">
+                    {product.type === "camo" ? "Camo Unlock:" : "Bot Lobbies:"}
+                  </label>
+                  <Select
+                    value={selectedLobbies}
+                    onValueChange={setSelectedLobbies}
+                  >
+                    <SelectTrigger className="bg-muted/20 border-border text-white h-8">
+                      <SelectValue placeholder="Choose an option" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {lobbyOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label} - ${option.price}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
 
               {/* Delivery */}
               <div className="space-y-2">
@@ -317,39 +547,60 @@ export default function ProductPageV1() {
                 </label>
                 <div className="bg-muted/20 border border-border rounded-md p-2">
                   <span className="text-white font-supporting text-sm">
-                    Instant Delivery (Free!)
+                    {product.type === "camo"
+                      ? `${product.eta || "Same Day"} Delivery (Free!)`
+                      : "Instant Delivery (Free!)"}
                   </span>
                 </div>
               </div>
 
-              {/* Add-ons */}
-              <div className="space-y-2">
-                <label className="text-sm font-primary text-white">
-                  Add-ons:
-                </label>
-                <div className="space-y-4">
-                  {addons.map((addon) => (
-                    <div key={addon.id} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={addon.id}
-                        checked={selectedAddons.includes(addon.id)}
-                        onCheckedChange={(checked) =>
-                          handleAddonChange(addon.id, checked as boolean)
-                        }
-                      />
-                      <label
-                        htmlFor={addon.id}
-                        className="text-xs font-supporting white cursor-pointer flex-1"
-                      >
-                        {addon.label}
-                        <span className="text-accent block">
-                          (+USD ${addon.price})
-                        </span>
-                      </label>
-                    </div>
-                  ))}
+              {/* ETA - only show for camo products */}
+              {product.type === "camo" && product.eta && (
+                <div className="space-y-2">
+                  <label className="text-sm font-primary text-white">
+                    ETA:
+                  </label>
+                  <div className="bg-muted/20 border border-border rounded-md p-2">
+                    <span className="text-white font-supporting text-sm">
+                      {product.eta}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Add-ons - only show for boost type products */}
+              {product.type === "boost" && (
+                <div className="space-y-2">
+                  <label className="text-sm font-primary text-white">
+                    Add-ons:
+                  </label>
+                  <div className="space-y-4">
+                    {addons.map((addon) => (
+                      <div
+                        key={addon.id}
+                        className="flex items-center space-x-2"
+                      >
+                        <Checkbox
+                          id={addon.id}
+                          checked={selectedAddons.includes(addon.id)}
+                          onCheckedChange={(checked) =>
+                            handleAddonChange(addon.id, checked as boolean)
+                          }
+                        />
+                        <label
+                          htmlFor={addon.id}
+                          className="text-xs font-supporting white cursor-pointer flex-1"
+                        >
+                          {addon.label}
+                          <span className="text-accent block">
+                            (+USD ${addon.price})
+                          </span>
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Buy Button */}
               <Button className="w-full cursor-pointer bg-primary hover:bg-primary/90 text-primary-foreground font-primary text-sm py-4">
@@ -575,29 +826,27 @@ export default function ProductPageV1() {
                   />
                 </div>
               )}
-
               <div>
                 <h1 className="text-3xl font-primary text-white mb-3">
                   {product.title}
                 </h1>
                 <p className="text-base font-supporting text-muted-foreground leading-relaxed">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-                  quae ratione odio quidem provident asperiores quia laudantium
-                  velit ipsum corrupti vero, itaque suscipit quasi. Mollitia cum
-                  esse quam in praesentium?
+                  {renderTextWithBold(product.description)}
                 </p>
               </div>
             </div>
 
+            {/* Features Section */}
             <div className="bg-card/30 backdrop-blur-sm border border-border/50 rounded-lg p-6">
               <h2 className="text-xl font-primary text-white mb-4">
-                What you'll achieve in each lobby:
+                {product.type === "camo"
+                  ? "What you'll achieve:"
+                  : "What you'll achieve in each lobby:"}
               </h2>
-
               {product.features.map((feature, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <ul className="pl-4">
-                    <li className=" font-supporting list-disc text-white text-sm mb-1">
+                    <li className="font-supporting list-disc text-white text-sm mb-1">
                       {feature}
                     </li>
                   </ul>
@@ -609,97 +858,20 @@ export default function ProductPageV1() {
             <div className="bg-card/30 backdrop-blur-sm border border-border/50 rounded-lg p-6">
               <h2 className="text-xl font-primary text-white mb-4">FAQ</h2>
               <div className="space-y-3">
-                <details className="group  bg-muted/10 rounded-lg hover:bg-muted/20">
-                  <summary className="flex items-center justify-between cursor-pointer p-3 transition-colors">
-                    <span className="font-supporting text-white text-sm">
-                      What are BO6 Bot Lobbies and how do they work?
-                    </span>
-                    <ChevronDown className="h-4 w-4 text-muted-foreground group-open:rotate-180 transition-transform" />
-                  </summary>
-                  <div className="p-3 pl-4 pt-2 font-supporting  text-muted-foreground text-sm">
-                    Our BO6 Bot Lobbies are fast-paced Hardcore matches filled
-                    with bots (AFK players), designed to help you complete camo
-                    challenges and level up your weapons quickly. You don't need
-                    to give us your account details — just provide your
-                    Activision ID, and we'll invite you to the lobby.
-                    <br /> <br /> Each lobby runs for about 10 minutes and can
-                    net you up to 400+ kills per game. The more lobbies you
-                    purchase, the better value you get.
-                  </div>
-                </details>
-                <details className="group bg-muted/10 rounded-lg hover:bg-muted/20">
-                  <summary className="flex items-center justify-between cursor-pointer p-3  transition-colors">
-                    <span className="font-supporting text-white text-sm">
-                      What can I do in a Bot Lobby?
-                    </span>
-                    <ChevronDown className="h-4 w-4 text-muted-foreground group-open:rotate-180 transition-transform" />
-                  </summary>
-                  <div className="p-3 pt-2 pl-4">
-                    <div className="font-supporting  text-muted-foreground text-sm">
-                      <p className="mb-2">
-                        In just a single Bot Lobby, you can easily achieve the
-                        following:
-                      </p>
-                      <ul className="list-disc list-inside space-y-1 pl-2">
-                        <li>200-400+ Kills</li>
-                        <li>Unlock and Complete Camo Challenges</li>
-                        <li>Unlock and Max Out Gun Levels</li>
-                        <li>Level Up Your Rank & Prestige FAST</li>
-                        <li>Unlock The Best Calling Cards</li>
-                        <li>Increase your K/D</li>
-                        <li>And More!</li>
-                      </ul>
-                    </div>
-                  </div>
-                </details>
-                <details className="group  bg-muted/10 rounded-lg hover:bg-muted/20">
-                  <summary className="flex items-center justify-between cursor-pointer p-3 transition-colors">
-                    <span className="font-supporting text-white text-sm">
-                      Are BO6 Bot Lobbies safe to use?
-                    </span>
-                    <ChevronDown className="h-4 w-4 text-muted-foreground group-open:rotate-180 transition-transform" />
-                  </summary>
-                  <div className="p-3 pl-4 pt-2 font-supporting  text-muted-foreground text-sm">
-                    Yes! Our BO6 Bot Lobbies are hosted in public matches, which
-                    makes them completely safe and legit. All your rewards,
-                    including weapon XP, camo progress, and account XP, are
-                    retained as normal and stay permanently on your account.
-                  </div>
-                </details>
-                <details className="group  bg-muted/10 rounded-lg hover:bg-muted/20">
-                  <summary className="flex items-center justify-between cursor-pointer p-3  transition-colors">
-                    <span className="font-supporting text-white text-sm">
-                      How do I join a Bot Lobby?
-                    </span>
-                    <ChevronDown className="h-4 w-4 text-muted-foreground group-open:rotate-180 transition-transform" />
-                  </summary>
-                  <div className="p-3 pl-4 pt-2 font-supporting  text-muted-foreground text-sm">
-                    Once you place an order, you'll be emailed your Order ID.
-                    Using this, you can open up a ticket on our{" "}
-                    <a
-                      href="https://discord.gg/boostlab"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-secondary underline"
-                    >
-                      Discord Server
-                    </a>
-                    , where one of our team members will invite you to the Bot
-                    Lobby. From here, you can start levelling up immediately.
-                  </div>
-                </details>
-                <details className="group  bg-muted/10 rounded-lg hover:bg-muted/20">
-                  <summary className="flex items-center justify-between cursor-pointer p-3 transition-colors">
-                    <span className="font-supporting text-white text-sm">
-                      Which platforms can join the lobby?
-                    </span>
-                    <ChevronDown className="h-4 w-4 text-muted-foreground group-open:rotate-180 transition-transform" />
-                  </summary>
-                  <div className="p-3 pl-4 pt-2 font-supporting  text-muted-foreground text-sm">
-                    Our Bot Lobbies work on all platforms - Playstation, Xbox
-                    and PC.
-                  </div>
-                </details>
+                {product.faq?.map((faqItem, index) => (
+                  <details
+                    key={index}
+                    className="group bg-muted/10 rounded-lg hover:bg-muted/20"
+                  >
+                    <summary className="flex items-center justify-between cursor-pointer p-3 transition-colors">
+                      <span className="font-supporting text-white text-sm">
+                        {faqItem.question}
+                      </span>
+                      <ChevronDown className="h-4 w-4 text-muted-foreground group-open:rotate-180 transition-transform" />
+                    </summary>
+                    {renderFAQAnswer(faqItem)}
+                  </details>
+                ))}
               </div>
             </div>
 
@@ -709,30 +881,43 @@ export default function ProductPageV1() {
                 <h1 className="text-xl font-primary text-white mb-4">
                   How it works
                 </h1>
-
                 <div className="relative">
                   {/* Vertical connecting line */}
                   <div className="absolute left-4 top-8 bottom-0 w-0.5 bg-secondary"></div>
-
                   <div className="space-y-8">
-                    {steps.map((step) => (
-                      <div key={step.number} className="relative flex gap-6">
+                    {product.howItWorks?.map((step) => (
+                      <div key={step.step} className="relative flex gap-6">
                         {/* Circle with number */}
                         <div className="relative flex-shrink-0 z-10">
                           <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
                             <span className="text-white font-bold text-sm">
-                              {step.number}
+                              {step.step}
                             </span>
                           </div>
                         </div>
 
                         {/* Content */}
                         <div className="flex-1 pb-4">
-                          <h3 className=" font-primary pt-2 text-white text-sm mb-1">
+                          <h3 className="font-primary pt-2 text-white text-sm mb-1">
                             {step.title}
                           </h3>
                           <p className="font-supporting text-muted-foreground text-sm">
-                            {step.description}
+                            {step.link ? (
+                              <>
+                                {step.description.split("Discord Server")[0]}
+                                <a
+                                  href={step.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-secondary underline"
+                                >
+                                  Discord Server
+                                </a>
+                                {step.description.split("Discord Server")[1]}
+                              </>
+                            ) : (
+                              step.description
+                            )}
                           </p>
                         </div>
                       </div>
@@ -752,7 +937,6 @@ export default function ProductPageV1() {
                 transform: `translateY(${panelTop}px)`,
                 transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                 top: "120px",
-                //maxHeight: `${600 + panelTop * 0.5}px`, // Gradually reveals more content
               }}
             >
               <div className="bg-primary/15 backdrop-blur-sm border border-border/50 rounded-lg p-4">
@@ -773,27 +957,31 @@ export default function ProductPageV1() {
                     )}
                   </div>
 
-                  {/* Bot Lobbies Selection */}
-                  <div className="space-y-2">
-                    <label className="text-sm font-primary text-white">
-                      Bot Lobbies:
-                    </label>
-                    <Select
-                      value={selectedLobbies}
-                      onValueChange={setSelectedLobbies}
-                    >
-                      <SelectTrigger className="bg-muted/20 border-border text-white h-8">
-                        <SelectValue placeholder="Choose an option" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {lobbyOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label} - ${option.price}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  {/* Product Selection */}
+                  {lobbyOptions.length > 0 && (
+                    <div className="space-y-2">
+                      <label className="text-sm font-primary text-white">
+                        {product.type === "camo"
+                          ? "Camo Unlock:"
+                          : "Bot Lobbies:"}
+                      </label>
+                      <Select
+                        value={selectedLobbies}
+                        onValueChange={setSelectedLobbies}
+                      >
+                        <SelectTrigger className="bg-muted/20 border-border text-white h-8">
+                          <SelectValue placeholder="Choose an option" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {lobbyOptions.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label} - ${option.price}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
 
                   {/* Delivery */}
                   <div className="space-y-2">
@@ -802,42 +990,60 @@ export default function ProductPageV1() {
                     </label>
                     <div className="bg-muted/20 border border-border rounded-md p-2">
                       <span className="text-white font-supporting text-sm">
-                        Instant Delivery (Free!)
+                        {product.type === "camo"
+                          ? `${product.eta || "Same Day"} Delivery (Free!)`
+                          : "Instant Delivery (Free!)"}
                       </span>
                     </div>
                   </div>
 
-                  {/* Add-ons */}
-                  <div className="space-y-2">
-                    <label className="text-sm font-primary text-white">
-                      Add-ons:
-                    </label>
-                    <div className="space-y-4">
-                      {addons.map((addon) => (
-                        <div
-                          key={addon.id}
-                          className="flex items-center space-x-2"
-                        >
-                          <Checkbox
-                            id={addon.id}
-                            checked={selectedAddons.includes(addon.id)}
-                            onCheckedChange={(checked) =>
-                              handleAddonChange(addon.id, checked as boolean)
-                            }
-                          />
-                          <label
-                            htmlFor={addon.id}
-                            className="text-xs font-supporting white cursor-pointer flex-1"
-                          >
-                            {addon.label}
-                            <span className="text-accent block">
-                              (+USD ${addon.price})
-                            </span>
-                          </label>
-                        </div>
-                      ))}
+                  {/* ETA - only show for camo products */}
+                  {product.type === "camo" && product.eta && (
+                    <div className="space-y-2">
+                      <label className="text-sm font-primary text-white">
+                        ETA:
+                      </label>
+                      <div className="bg-muted/20 border border-border rounded-md p-2">
+                        <span className="text-white font-supporting text-sm">
+                          {product.eta}
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  )}
+
+                  {/* Add-ons - only show for boost type products */}
+                  {product.type === "boost" && (
+                    <div className="space-y-2">
+                      <label className="text-sm font-primary text-white">
+                        Add-ons:
+                      </label>
+                      <div className="space-y-4">
+                        {addons.map((addon) => (
+                          <div
+                            key={addon.id}
+                            className="flex items-center space-x-2"
+                          >
+                            <Checkbox
+                              id={addon.id}
+                              checked={selectedAddons.includes(addon.id)}
+                              onCheckedChange={(checked) =>
+                                handleAddonChange(addon.id, checked as boolean)
+                              }
+                            />
+                            <label
+                              htmlFor={addon.id}
+                              className="text-xs font-supporting white cursor-pointer flex-1"
+                            >
+                              {addon.label}
+                              <span className="text-accent block">
+                                (+USD ${addon.price})
+                              </span>
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Buy Button */}
                   <Button className="w-full bg-primary cursor-pointer hover:bg-primary/90 text-primary-foreground font-primary text-sm py-4">
@@ -901,8 +1107,9 @@ export default function ProductPageV1() {
                   </div>
                 </div>
               </div>
+
               {/* Guarantee Section */}
-              <div className="mt-4  backdrop-blur-sm p-5">
+              <div className="mt-4 backdrop-blur-sm p-5">
                 <TooltipProvider>
                   <div className="space-y-4">
                     <Tooltip>
@@ -937,7 +1144,7 @@ export default function ProductPageV1() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <div className="flex items-center gap-3 cursor-help p-2 rounded-lg hover:bg-primary/5 transition-colors">
-                          <div className="w-8 h-8 bg-primary  rounded-lg flex items-center justify-center">
+                          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                             <svg
                               viewBox="0 0 24 24"
                               fill="none"
@@ -972,7 +1179,7 @@ export default function ProductPageV1() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <div className="flex items-center gap-3 cursor-help p-2 rounded-lg hover:bg-primary/5 transition-colors">
-                          <div className="w-8 h-8 bg-primary  rounded-lg flex items-center justify-center">
+                          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                             <svg
                               viewBox="0 0 24 24"
                               fill="none"
@@ -1001,7 +1208,7 @@ export default function ProductPageV1() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <div className="flex items-center gap-3 cursor-help p-2 rounded-lg hover:bg-primary/5 transition-colors">
-                          <div className="w-8 h-8 bg-primary  rounded-lg flex items-center justify-center">
+                          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                             <svg
                               viewBox="0 0 24 24"
                               fill="none"
@@ -1047,7 +1254,6 @@ export default function ProductPageV1() {
             You may also like
           </h2>
         </div>
-
         <div className="relative max-w-6xl mx-auto">
           {/* Left Arrow */}
           <button
@@ -1068,72 +1274,62 @@ export default function ProductPageV1() {
           </button>
 
           {/* Carousel Container */}
-          <div className="overflow-hidden mx-16">
+          <div className="overflow-hidden mx-16 pb-40">
             <div
               ref={carouselRef}
               className="flex gap-4 transition-transform duration-300 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * (100 / 3)}%)` }}
             >
-              {relatedProducts.map((relatedProduct) => (
-                <div
-                  key={relatedProduct.id}
-                  className="flex-shrink-0 w-80 bg-card/30 backdrop-blur-sm border border-border/50 rounded-lg overflow-hidden hover:bg-card/40 transition-colors cursor-pointer"
-                >
-                  <div className="h-40 overflow-hidden">
-                    <OptimizedImage
-                      src={relatedProduct.image}
-                      alt={relatedProduct.alt}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-primary text-white text-base mb-2">
-                      {relatedProduct.title}
-                    </h3>
-                    <div className="space-y-1 mb-4">
-                      {relatedProduct.features
-                        .slice(0, 3)
-                        .map((feature, index) => (
-                          <p
-                            key={index}
-                            className="text-xs font-supporting text-muted-foreground"
-                          >
-                            • {feature}
-                          </p>
-                        ))}
+              {relatedProducts.map((relatedProduct) => {
+                if (relatedProduct.tag?.toLowerCase().includes("coming soon"))
+                  return;
+                return (
+                  <div
+                    key={relatedProduct.id}
+                    className="flex-shrink-0 w-80 bg-card/30 backdrop-blur-sm border border-border/50 rounded-lg overflow-hidden hover:bg-card/40 transition-colors cursor-pointer"
+                  >
+                    <div className="h-40 overflow-hidden">
+                      <OptimizedImage
+                        src={relatedProduct.image}
+                        alt={relatedProduct.alt}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className="font-primary text-secondary text-base">
-                        From €{relatedProduct.price}
-                      </span>
-                      <Button
-                        size="sm"
-                        className="bg-primary hover:bg-primary/90 text-sm px-4 py-2 h-8"
-                      >
-                        View →
-                      </Button>
+                    <div className="p-4">
+                      <h3 className="font-primary text-white text-base mb-2">
+                        {relatedProduct.title}
+                      </h3>
+                      <div className="space-y-1 mb-4">
+                        {relatedProduct.features
+                          .slice(0, 3)
+                          .map((feature, index) => (
+                            <p
+                              key={index}
+                              className="text-xs font-supporting text-muted-foreground"
+                            >
+                              • {feature}
+                            </p>
+                          ))}
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="font-primary text-secondary text-base">
+                          From ${relatedProduct.price}
+                        </span>
+                        <Button
+                          onClick={() =>
+                            navigate(`/product/${relatedProduct.id}`)
+                          }
+                          size="sm"
+                          className="cursor-pointer bg-primary hover:bg-primary/90 text-sm px-4 py-2 h-8"
+                        >
+                          View →
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
-          </div>
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center mt-6 gap-2">
-            {Array.from({
-              length: Math.max(0, relatedProducts.length - 2),
-            }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  currentSlide === index
-                    ? "bg-primary"
-                    : "bg-muted-foreground/30"
-                }`}
-              />
-            ))}
           </div>
         </div>
       </div>

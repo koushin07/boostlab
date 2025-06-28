@@ -1,12 +1,12 @@
 
 import React from "react";
-import type { testimonial } from "@/pages/Index";
+import type { Testimonial } from "@/pages/Index";
 import TrustBox from "../TrustPilotContainer";
 
 interface TrustpilotProps {
   sectionsRef: React.RefObject<HTMLElement[]>;
 
-  duplicate: testimonial[];
+  duplicate: Testimonial[];
 }
 
 const TrustpilotSection = ({

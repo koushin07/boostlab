@@ -1,18 +1,62 @@
 [
-
   {
     "id": "dark-matter-camo",
     "title": "Dark Matter Camo Unlock",
     "price": "149.99",
     "image": "/camos/Dark_Matter.png",
     "type": "camo",
-    "alt": "Galaxy Camo",
-    "features": [
-      "Unlocked on Your Account",
-      "100% Legitimate Hard Unlock",
-      "Same-Day Completion Time"
+    "alt": "Dark Matter Camo",
+    "eta": "Same Day",
+    "description": "Purchase the Dark Matter Camo Unlock and harness the galaxy itself with this prestigious, animated cosmos-themed skin for your **Black Ops 6** weapons. Our service includes everything you need, from unlocking **Gold, Diamond, and Dark Spine Camos** across all base weapons to completing the final **Dark Matter Camo Challenge**. Skip the endless grinding and let us elevate your arsenal with this highly sought-after camouflage.",
+    "features": ["Unlocked on Your Account", "100% Legitimate Hard Unlock", "Same-Day Completion Time"],
+    "pricing": [
+      {
+        "quantity": "1 Camo",
+        "price": "149.99"
+      }
+    ],
+    "achievements": [
+      "Complete Dark Matter Camo Challenge",
+      "Unlock Gold, Diamond, and Dark Spine Camos",
+      "All base weapons included"
+    ],
+    "faq": [
+      {
+        "question": "How does the Camo Unlock work?",
+        "answer": "We carry out this service by logging into an account of your choice, ensuring a hassle-free and fast delivery. One of our team members will efficiently grind through all the required camos within the ETA, keeping you updated every step of the way!"
+      },
+      {
+        "question": "Is this safe?",
+        "answer": "Yes! Our Camo Boosts are achieved through hard unlocks, all completed by hand. No cheats, hacks, or software is used at all. All camos that we unlock on your account are completely safe and will never disappear."
+      },
+      {
+        "question": "Which platforms are supported?",
+        "answer": "Our Camo Unlocks can be completed on all platforms - Playstation, Xbox and PC."
+      }
+    ],
+    "howItWorks": [
+      {
+        "step": 1,
+        "title": "Configure your order",
+        "description": "Select the Camo Unlock that you'd like to purchase and place your order. If you need help or have any queries, click the chat button in the bottom-right corner to talk to our 24/7 support team."
+      },
+      {
+        "step": 2,
+        "title": "Join our Discord Server",
+        "description": "Once your order is placed, you'll receive an email from us containing your Order ID. You can use this to open a ticket in our Discord Server where our team will begin your order.",
+        "link": "https://discord.gg/boostlab"
+      },
+      {
+        "step": 3,
+        "title": "Order in Progress",
+        "description": "Once you provide us with your login information, one of our team will begin grinding through the required camos. You will be kept updated on their progress throughout the entire process."
+      },
+      {
+        "step": 4,
+        "title": "Have fun!",
+        "description": "Once you have received your camos, we'd love for you to leave us a Trustpilot review letting us know how we did, so we can continue improving our service."
+      }
     ]
-
   },
   {
     "id": "abyss-camo",
@@ -20,73 +64,365 @@
     "price": "249.99",
     "image": "/camos/Abyss.png",
     "type": "camo",
-    "alt": "Gold Camo",
-    "features": [
-      "Unlocked on Your Account",
-      "100% Legitimate Hard Unlock",
-      "Ultra-Fast Completion Time"
+    "alt": "Abyss Camo",
+    "eta": "2-4 Days",
+    "description": "Purchase the Abyss Camo Unlock and unleash the shadows with this rare, animated endgame skin for your **Warzone** arsenal. This dark, otherworldly camo is the ultimate reward in a multi-stage mastery journey, and we'll take care of the entire grind for you. Our expert boosters will unlock **Gold Tiger, King's Ransom, Catalyst**, and finally the **Abyss Camo** on each weapon, saving you months of hardcore gameplay.",
+    "features": ["Unlocked on Your Account", "100% Legitimate Hard Unlock", "2-4 Days Completion Time"],
+    "pricing": [
+      {
+        "quantity": "1 Camo",
+        "price": "249.99"
+      }
+    ],
+    "achievements": [
+      "Unlock Gold Tiger, King's Ransom, Catalyst",
+      "Complete Abyss Camo unlock",
+      "All weapons included"
+    ],
+    "faq": [
+      {
+        "question": "How does the Camo Unlock work?",
+        "answer": "We carry out this service by logging into an account of your choice, ensuring a hassle-free and fast delivery. One of our team members will efficiently grind through all the required camos within the ETA, keeping you updated every step of the way!"
+      },
+      {
+        "question": "Is this safe?",
+        "answer": "Yes! Our Camo Boosts are achieved through hard unlocks, all completed by hand. No cheats, hacks, or software is used at all. All camos that we unlock on your account are completely safe and will never disappear."
+      },
+      {
+        "question": "Which platforms are supported?",
+        "answer": "Our Camo Unlocks can be completed on all platforms - Playstation, Xbox and PC."
+      }
+    ],
+    "howItWorks": [
+      {
+        "step": 1,
+        "title": "Configure your order",
+        "description": "Select the Camo Unlock that you'd like to purchase and place your order. If you need help or have any queries, click the chat button in the bottom-right corner to talk to our 24/7 support team."
+      },
+      {
+        "step": 2,
+        "title": "Join our Discord Server",
+        "description": "Once your order is placed, you'll receive an email from us containing your Order ID. You can use this to open a ticket in our Discord Server where our team will begin your order.",
+        "link": "https://discord.gg/boostlab"
+      },
+      {
+        "step": 3,
+        "title": "Order in Progress",
+        "description": "Once you provide us with your login information, one of our team will begin grinding through the required camos. You will be kept updated on their progress throughout the entire process."
+      },
+      {
+        "step": 4,
+        "title": "Have fun!",
+        "description": "Once you have received your camos, we'd love for you to leave us a Trustpilot review letting us know how we did, so we can continue improving our service."
+      }
     ]
   },
   {
     "id": "nebula-camo",
     "title": "Nebula Camo Unlock",
-    "price": "249.99",
+    "price": "279.99",
     "image": "/camos/Nebula.png",
     "type": "camo",
-    "alt": "Gold Camo",
-    "features": [
-      "Unlocked on Your Account",
-      "100% Legitimate Hard Unlock",
-      "Ultra-Fast Completion Time"
+    "alt": "Nebula Camo",
+    "eta": "2-4 Days",
+    "description": "Purchase the Nebula Camo Unlock and channel the power of the undead with this stunning animated **Zombies** mastery camo for **Black Ops 6**. Nebula is the ultimate reward for completing the Zombies camo grind, which requires unlocking **Mystic Gold, Opal, and Afterlife** skins first. We'll take care of every step, saving you months of battling through the **Dark Aether**.",
+    "features": ["Unlocked on Your Account", "100% Legitimate Hard Unlock", "2-4 Days Completion Time"],
+    "pricing": [
+      {
+        "quantity": "1 Camo",
+        "price": "279.99"
+      }
+    ],
+    "achievements": [
+      "Unlock Mystic Gold, Opal, and Afterlife skins",
+      "Complete Nebula Camo unlock",
+      "All weapons included"
+    ],
+    "faq": [
+      {
+        "question": "How does the Camo Unlock work?",
+        "answer": "We carry out this service by logging into an account of your choice, ensuring a hassle-free and fast delivery. One of our team members will efficiently grind through all the required camos within the ETA, keeping you updated every step of the way!"
+      },
+      {
+        "question": "Is this safe?",
+        "answer": "Yes! Our Camo Boosts are achieved through hard unlocks, all completed by hand. No cheats, hacks, or software is used at all. All camos that we unlock on your account are completely safe and will never disappear."
+      },
+      {
+        "question": "Which platforms are supported?",
+        "answer": "Our Camo Unlocks can be completed on all platforms - Playstation, Xbox and PC."
+      }
+    ],
+    "howItWorks": [
+      {
+        "step": 1,
+        "title": "Configure your order",
+        "description": "Select the Camo Unlock that you'd like to purchase and place your order. If you need help or have any queries, click the chat button in the bottom-right corner to talk to our 24/7 support team."
+      },
+      {
+        "step": 2,
+        "title": "Join our Discord Server",
+        "description": "Once your order is placed, you'll receive an email from us containing your Order ID. You can use this to open a ticket in our Discord Server where our team will begin your order.",
+        "link": "https://discord.gg/boostlab"
+      },
+      {
+        "step": 3,
+        "title": "Order in Progress",
+        "description": "Once you provide us with your login information, one of our team will begin grinding through the required camos. You will be kept updated on their progress throughout the entire process."
+      },
+      {
+        "step": 4,
+        "title": "Have fun!",
+        "description": "Once you have received your camos, we'd love for you to leave us a Trustpilot review letting us know how we did, so we can continue improving our service."
+      }
     ]
-
   },
-
   {
     "id": "bot-multiplayer",
-    "title": "Multiplayer Bot lobbies",
+    "title": "Multiplayer Bot Lobbies",
     "image": "/lobbies/Multiplayer-Bot-Lobbies.png",
     "alt": "Multiplayer",
     "type": "boost",
     "price": "3.99",
+    "description": "Tired of spending all day grinding in Black Ops 6? Our Bot Lobby services are the fastest and safest way to reach your goals. Whether you want to **unlock camos, boost your K/D, or max out weapons**, our bot-filled lobbies make progress effortless. We don’t require any account details, we only ask for your Activision ID, so that you can be invited to our secure lobbies.",
     "features": [
-      "Up to 400 kills per game",
-      "Complete Camo Challenges",
-      "Level Up Guns Fast",
-      "Instant Delivery"
+      "Up to 400 kills per lobby",
+      "Rapid completion of camo challenges and weapon levelling",
+      "K/D increase and rank rewards"
+    ],
+    "pricing": [
+      {
+        "quantity": "1 Bot Lobby",
+        "price": "3.99"
+      },
+      {
+        "quantity": "3 Bot Lobbies",
+        "price": "10.49"
+      },
+      {
+        "quantity": "5 Bot Lobbies",
+        "price": "14.99"
+      },
+      {
+        "quantity": "10 Bot Lobbies",
+        "price": "26.99"
+      }
+    ],
+    "achievements": [
+      "Up to 400 kills per lobby",
+      "Rapid completion of camo challenges and weapon levelling",
+      "K/D increase and rank rewards"
+    ],
+    "faq": [
+      {
+        "question": "What are BO6 Bot Lobbies and how do they work?",
+        "answer": "Our BO6 Bot Lobbies are fast-paced Hardcore matches filled with bots (AFK players), designed to help you complete camo challenges and level up your weapons quickly. You don't need to give us your account details — just provide your Activision ID, and we'll invite you to the lobby.\n\nEach lobby runs for about 10 minutes and can net you up to 400+ kills per game. The more lobbies you purchase, the better value you get."
+      },
+      {
+        "question": "What can I do in a Bot Lobby?",
+        "answer": "In just a single Bot Lobby, you can easily achieve the following:\n- 200-400+ Kills\n- Unlock and Complete Camo Challenges\n- Unlock and Max Out Gun Levels\n- Level Up Your Rank & Prestige FAST\n- Unlock The Best Calling Cards\n- Increase your K/D\n- And More!"
+      },
+      {
+        "question": "Are BO6 Bot Lobbies safe to use?",
+        "answer": "Yes! Our BO6 Bot Lobbies are hosted in public matches, which makes them completely safe and legit. All your rewards, including weapon XP, camo progress, and account XP, are retained as normal and stay permanently on your account."
+      },
+      {
+        "question": "How do I join a Bot Lobby?",
+        "answer": "Once you place an order, you'll be emailed your Order ID. Using this, you can open up a ticket on our Discord Server where one of our team members will invite you to the Bot Lobby. From here, you can start levelling up immediately.",
+        "link": "https://discord.gg/boostlab"
+      },
+      {
+        "question": "Which platforms can join the lobby?",
+        "answer": "Our Bot Lobbies work on all platforms - Playstation, Xbox and PC."
+      }
+    ],
+    "howItWorks": [
+      {
+        "step": 1,
+        "title": "Configure your order",
+        "description": "Select the number of lobbies that you'd like to purchase and place your order. If you need help or have any queries, click the chat button in the bottom-right corner to talk to our 24/7 support team."
+      },
+      {
+        "step": 2,
+        "title": "Join our Discord Server",
+        "description": "Once your order is placed, you'll receive an email from us containing your Order ID. You can use this to open a ticket in our Discord Server where our team will begin your order.",
+        "link": "https://discord.gg/boostlab"
+      },
+      {
+        "step": 3,
+        "title": "Order in Progress",
+        "description": "Once you provide your Activision ID, you will be invited to your Bot Lobby. Here, you can begin unlocking camos and leveling up your weapons."
+      },
+      {
+        "step": 4,
+        "title": "Have fun!",
+        "description": "Once you have finished your lobbies, we'd love for you to leave us a Trustpilot review letting us know how we did, so we can continue improving our service."
+      }
     ]
   },
   {
     "id": "ranked-multiplayer",
-    "title": "Multiplayer Ranked Bot lobbies",
+    "title": "Multiplayer Ranked Bot Lobbies",
     "image": "/lobbies/Multiplayer-Ranked-Bot-Lobbies.png",
     "alt": "Multiplayer Ranked",
     "type": "boost",
-
     "price": "5.99",
+    "description": "Tired of spending all day grinding in Black Ops 6 Ranked Play? Our Ranked Bot Lobby services are the fastest and safest way to climb the ladder and gain SR quickly. Whether you want to **increase your rank, improve your stats, or secure rewards**, our bot-filled lobbies make progress effortless. We don’t require any account details, we only ask for your Activision ID, so that you can be invited to our secure lobbies.",
     "features": [
-      "Gain SR Rapidly",
-      "Achieve your Dream Rank",
-      "100% Safe and Secure",
-      "Instant Delivery"
+      "An uncontested ranked win",
+      "Rapid increase in your rank. Bronze to Top 250 supported",
+      "K/D increase and Battle Pass rewards"
+    ],
+    "pricing": [
+      {
+        "quantity": "1 Bot Lobby",
+        "price": "5.99"
+      },
+      {
+        "quantity": "3 Bot Lobbies",
+        "price": "15.99"
+      },
+      {
+        "quantity": "5 Bot Lobbies",
+        "price": "22.99"
+      },
+      {
+        "quantity": "10 Bot Lobbies",
+        "price": "39.99"
+      }
+    ],
+    "achievements": [
+      "An uncontested ranked win",
+      "Rapid increase in your rank. Bronze to Top 250 supported",
+      "K/D increase and Battle Pass rewards"
+    ],
+    "faq": [
+      {
+        "question": "What are BO6 Ranked Bot Lobbies and how do they work?",
+        "answer": "Our BO6 Ranked Bot Lobbies are ranked matches filled with bots (AFK players), designed to help you rank up quickly. Each game guarantees an uncontested win. You don't need to give us your account details — just provide your Activision ID, and we'll invite you to the lobby. Each lobby runs for about 10 minutes. The more lobbies you purchase, the better value you get.  Each lobby runs for about 10 minutes. The more lobbies you purchase, the better value you get"
+      },
+      {
+        "question": "What can I do in a Ranked Bot Lobby?",
+        "answer": "In a Ranked Bot Lobby, you guarantee an uncontested win for yourself, while being able to kill the bots. This enables you to rapidly rank up while improving your ranked K/D."
+      },
+      {
+        "question": "Are BO6 Ranked Bot Lobbies safe to use?",
+        "answer": "Yes! Our BO6 Ranked Bot Lobbies are hosted in public matches, which makes them completely safe and legit. Your rank improvements are retained as normal and stay permanently on your account."
+      },
+      {
+        "question": "How do I join a Ranked Bot Lobby?",
+        "answer": "Once you place an order, you'll be emailed your Order ID. Using this, you can open up a ticket on our Discord Server, where one of our team members will invite you to the Bot Lobby. From here, you can start ranking up immediately.",
+        "link": "https://discord.gg/boostlab"
+      },
+      {
+        "question": "Which platforms can join the lobby?",
+        "answer": "Our Ranked Bot Lobbies work on all platforms - Playstation, Xbox and PC."
+      }
+    ],
+    "howItWorks": [
+      {
+        "step": 1,
+        "title": "Configure your order",
+        "description": "Select the number of lobbies that you'd like to purchase and place your order. If you need help or have any queries, click the chat button in the bottom-right corner to talk to our 24/7 support team."
+      },
+      {
+        "step": 2,
+        "title": "Join our Discord Server",
+        "description": "Once your order is placed, you'll receive an email from us containing your Order ID. You can use this to open a ticket in our Discord Server where our team will begin your order.",
+        "link": "https://discord.gg/boostlab"
+      },
+      {
+        "step": 3,
+        "title": "Order in Progress",
+        "description": "Once you provide your Activision ID, you will be invited to your Ranked Bot Lobby. Here, you can begin winning games and ranking up."
+      },
+      {
+        "step": 4,
+        "title": "Have fun!",
+        "description": "Once you have finished your lobbies, we'd love for you to leave us a Trustpilot review letting us know how we did, so we can continue improving our service."
+      }
     ]
   },
   {
     "id": "warzone",
-    "title": "Warzone Bot lobbies",
+    "title": "Warzone Bot Lobbies",
     "image": "/lobbies/Warzone-Bot-Lobbies.png",
     "alt": "Warzone",
     "type": "boost",
-
-
     "price": "5.99",
+    "description": "Tired of spending all day grinding in Warzone? Our Warzone Bot Lobby services are the fastest and safest way to reach your goals. Whether you want to **unlock camos, boost your K/D, or max out weapons**, our bot-filled lobbies make progress effortless. We don’t require any account details, we only ask for your Activision ID, so that you can be invited to our secure lobbies.",
     "features": [
-      "Up to 400 Kills Per Game",
-      "Complete Camo Challenges",
-      "Level Up Guns Fast",
-      "Instant Delivery"
+      "Up to 100 kills per lobby",
+      "Rapid completion of camo challenges and weapon levelling",
+      "K/D increase and Battle Pass rewards"
+    ],
+    "pricing": [
+      {
+        "quantity": "1 Bot Lobby",
+        "price": "5.99"
+      },
+      {
+        "quantity": "3 Bot Lobbies",
+        "price": "15.99"
+      },
+      {
+        "quantity": "5 Bot Lobbies",
+        "price": "22.99"
+      },
+      {
+        "quantity": "10 Bot Lobbies",
+        "price": "39.99"
+      }
+    ],
+    "achievements": [
+      "Up to 100 kills per lobby",
+      "Rapid completion of camo challenges and weapon levelling",
+      "K/D increase and Battle Pass rewards"
+    ],
+    "faq": [
+      {
+        "question": "What are Warzone Bot Lobbies and how do they work?",
+        "answer": "Our Warzone Bot Lobbies are fast-paced Warzone Rebirth matches filled with bots (AFK players), designed to help you complete camo challenges and level up your weapons quickly. You don't need to give us your account details — just provide your Activision ID, and we'll invite you to the lobby\n\nEach lobby can net you 100+ kills per game. The more lobbies you purchase, the better value you get."
+      },
+      {
+        "question": "What can I do in a Warzone Bot Lobby?",
+        "answer": "In just a single Warzone Bot Lobby, you can easily achieve the following:\n- 100+ Kills\n- Unlock and Complete Camo Challenges\n- Unlock and Max Out Gun Levels\n- Level Up Your Rank & Prestige FAST\n- Unlock The Best Calling Cards\n- Increase your K/D\n- And More!"
+      },
+      {
+        "question": "Are Warzone Bot Lobbies safe to use?",
+        "answer": "Yes! Our Warzone Bot Lobbies are hosted in public matches, which makes them completely safe and legit. All your rewards, including weapon XP, camo progress, and account XP, are retained as normal and stay permanently on your account."
+      },
+      {
+        "question": "How do I join a Warzone Bot Lobby?",
+        "answer": "Once you place an order, you'll be emailed your Order ID. Using this, you can open up a ticket on our Discord Server, where one of our team members will invite you to the Bot Lobby. From here, you can start levelling up immediately"
+      },
+      {
+        "question": "Which platforms can join the lobby?",
+        "answer": "Our Bot Lobbies work on all platforms - Playstation, Xbox and PC."
+      }
+    ],
+    "howItWorks": [
+      {
+        "step": 1,
+        "title": "Configure your order",
+        "description": "Select the number of lobbies that you'd like to purchase and place your order. If you need help or have any queries, click the chat button in the bottom-right corner to talk to our 24/7 support team."
+      },
+      {
+        "step": 2,
+        "title": "Join our Discord Server",
+        "description": "Once your order is placed, you'll receive an email from us containing your Order ID. You can use this to open a ticket in our Discord Server where our team will begin your order.",
+        "link": "https://discord.gg/boostlab"
+      },
+      {
+        "step": 3,
+        "title": "Order in Progress",
+        "description": "Once you provide your Activision ID, you will be invited to your Bot Lobby. Here, you can begin unlocking camos and leveling up your weapons."
+      },
+      {
+        "step": 4,
+        "title": "Have fun!",
+        "description": "Once you have finished your lobbies, we'd love for you to leave us a Trustpilot review letting us know how we did, so we can continue improving our service."
+      }
     ]
-
   },
   {
     "id": "warzone-ranked",
@@ -94,14 +430,67 @@
     "image": "/lobbies/Warzone-Ranked-Bot-Lobbies.png",
     "alt": "Warzone Rank",
     "type": "boost",
-    "tag": "Coming soon",
+    "tag": "Coming Soon",
     "price": "9.99",
-    "features": [
-      "Compete at higher levels",
-      "Earn rewards and badges",
-      "Exclusive ranked content"
+    "description": "Get ready for the ultimate **Warzone Ranked** experience! Our upcoming Warzone Ranked Bot Lobby service will be the fastest and safest way to climb the competitive ladder. Whether you want to **increase your rank, improve your stats, or secure exclusive rewards**, our bot-filled lobbies will make progress effortless. Stay tuned for updates on this exciting new service!",
+    "features": ["Compete at higher levels", "Earn rewards and badges", "Exclusive ranked content"],
+    "pricing": [
+      {
+        "quantity": "1 Bot Lobby",
+        "price": "9.99"
+      },
+      {
+        "quantity": "3 Bot Lobbies",
+        "price": "26.99"
+      },
+      {
+        "quantity": "5 Bot Lobbies",
+        "price": "39.99"
+      },
+      {
+        "quantity": "10 Bot Lobbies",
+        "price": "69.99"
+      }
+    ],
+    "achievements": ["Compete at higher levels", "Earn rewards and badges", "Exclusive ranked content"],
+    "faq": [
+      {
+        "question": "When will Warzone Ranked Bot Lobbies be available?",
+        "answer": "We're currently working on bringing you the best Warzone Ranked Bot Lobby experience. Stay tuned to our Discord Server for updates on the launch date and early access opportunities.",
+        "link": "https://discord.gg/boostlab"
+      },
+      {
+        "question": "How will Warzone Ranked Bot Lobbies work?",
+        "answer": "Our Warzone Ranked Bot Lobbies will be competitive matches filled with bots, designed to help you rank up quickly in Warzone's ranked mode. More details will be shared closer to the launch date."
+      },
+      {
+        "question": "Can I get notified when this service launches?",
+        "answer": "Yes! Join our Discord Server to be the first to know when Warzone Ranked Bot Lobbies become available. We'll also announce early access opportunities for our community members.",
+        "link": "https://discord.gg/boostlab"
+      }
+    ],
+    "howItWorks": [
+      {
+        "step": 1,
+        "title": "Stay tuned",
+        "description": "We're currently developing this service to ensure the best possible experience. Join our Discord Server to get notified when it becomes available.",
+        "link": "https://discord.gg/boostlab"
+      },
+      {
+        "step": 2,
+        "title": "Early access",
+        "description": "Discord members will get early access to this service before it's publicly available. Make sure you're part of our community!"
+      },
+      {
+        "step": 3,
+        "title": "Launch day",
+        "description": "Once launched, you'll be able to configure your order and start ranking up in Warzone's competitive mode."
+      },
+      {
+        "step": 4,
+        "title": "Dominate the ranks",
+        "description": "Climb the Warzone ranked ladder faster than ever before with our professional bot lobby service."
+      }
     ]
   }
 ]
-
-

@@ -17,7 +17,7 @@ import { useLocation } from "react-router-dom";
 import type { Products } from "@/types/products";
 
 
-export interface testimonial {
+export interface Testimonial {
   name: string;
   star: number;
   title: string;
@@ -154,7 +154,7 @@ export interface Step {
 //   },
 // ];
 
-const testimonials: testimonial[] = [
+const testimonials: Testimonial[] = [
   { comment: "very nice", name: "will smith", star: 4, title: "love it" },
   {
     comment: "Absolutely amazing service and quality.",
@@ -275,6 +275,7 @@ export default function IndexPage() {
         block: "start",
       });
     }
+
   };
 
   if (!imagesLoaded) {
@@ -307,7 +308,7 @@ export default function IndexPage() {
       />
 
       {/* Video Showcase Section */}
-      <VideoSection />
+      <VideoSection sectionsRef={sectionsRef} />
 
       {/* Enhanced How it Works Section */}
       <HowToOrderSection />

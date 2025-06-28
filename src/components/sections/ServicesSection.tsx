@@ -1,16 +1,17 @@
-import React from "react";
-import { Button } from "../ui/button";
-import { ArrowRight, Star, Target } from "lucide-react";
+"use client"
 
-import ServiceCard from "../ServiceCard";
-import type { Products } from "@/types/products";
+import type React from "react"
+import { Button } from "../ui/button"
+import { ArrowRight, Star, Target } from "lucide-react"
+import ServiceCard from "../ServiceCard"
+import type { Products } from "@/types/products"
 
 interface ServicesSectionProps {
-  sectionsRef: React.RefObject<HTMLElement[]>;
-  setSelectedCategory: (category: React.SetStateAction<string>) => void;
-  selectedCategory: string;
-  lobbies: Products[];
-  camos: Products[];
+  sectionsRef: React.RefObject<HTMLElement[]>
+  setSelectedCategory: (category: React.SetStateAction<string>) => void
+  selectedCategory: string
+  lobbies: Products[]
+  camos: Products[]
 }
 
 const ServicesSection = ({
@@ -22,25 +23,24 @@ const ServicesSection = ({
 }: ServicesSectionProps) => {
   const handleCheckOffersClick = () => {
     // Set category to Camos
-    setSelectedCategory("Camos");
-
+    setSelectedCategory("Camos")
     // Scroll to the services section
-    const servicesSection = sectionsRef.current?.[3];
+    const servicesSection = sectionsRef.current?.[3]
     if (servicesSection) {
       servicesSection.scrollIntoView({
         behavior: "smooth",
         block: "start",
-      });
+      })
     }
-  };
+  }
 
   return (
     <section
       ref={(el) => {
-        if (el) sectionsRef.current[3] = el;
+        if (el) sectionsRef.current[3] = el
       }}
       id="services"
-      className="container mx-auto py-20 px-4 relative z-10 bg-background"
+      className="container mx-auto pb-40 px-4 relative z-10 bg-background"
     >
       <h2 className="text-4xl md:text-6xl font-bold mb-16 text-center animate-fadeInUp">
         OUR <span className="text-primary animate-glow">SERVICES</span>
@@ -77,7 +77,7 @@ const ServicesSection = ({
       {/* Services Grid */}
       {selectedCategory === "Bot Lobbies" && (
         <div className="space-y-8">
-          <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {lobbies.map((lobby, index) => (
               <ServiceCard
                 id={lobby.id}
@@ -99,7 +99,7 @@ const ServicesSection = ({
       {/* Camos Section - Enhanced */}
       {selectedCategory === "Camos" && (
         <div className="space-y-8">
-          <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Enhanced Camo Cards */}
             {camos.map((camo, index) => (
               <ServiceCard
@@ -118,6 +118,7 @@ const ServicesSection = ({
           </div>
         </div>
       )}
+
       {/* Enhanced Promotional Camo Banner */}
       {selectedCategory !== "Camos" && (
         <div className="mt-16 animate-fadeInUp delay-300">
@@ -129,12 +130,10 @@ const ServicesSection = ({
                   Looking for Camo Boosting?
                 </h3>
                 <p className="text-white font-supporting text-lg lg:text-xl font-medium opacity-90 leading-relaxed">
-                  We can unlock Dark Matter, Nebula, Abyss and other special
-                  camouflages for you!
+                  We can unlock Dark Matter, Nebula, Abyss and other special camouflages for you!
                 </p>
-
                 {/* Additional features list */}
-                <div className="hidden lg:flex items-center gap-6 mt-4 text-sm text-accent">
+                <div className="hidden lg:flex items-center gap-6 mt-4 text-sm text-white">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                     <span>Fast Delivery</span>
@@ -149,7 +148,6 @@ const ServicesSection = ({
                   </div>
                 </div>
               </div>
-
               {/* Right side - Enhanced CTA button */}
               <div className="shrink-0">
                 <Button
@@ -165,14 +163,13 @@ const ServicesSection = ({
                 </Button>
               </div>
             </div>
-
             {/* Bottom accent line */}
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-400/50 to-transparent"></div>
           </div>
         </div>
       )}
     </section>
-  );
-};
+  )
+}
 
-export default ServicesSection;
+export default ServicesSection
