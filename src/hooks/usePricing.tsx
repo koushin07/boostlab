@@ -13,7 +13,7 @@ const ADDONS: Addon[] = [
   { id: "5h-xp", label: "5 Hours of Double Account XP Codes", price: 6.99 },
   { id: "5h-weapon-xp", label: "5 Hours of Double Account AND Weapon XP Codes", price: 9.99 },
   { id: "10h-xp", label: "10 Hours of Double Account XP Codes", price: 12.99 },
-  { id: "10h-weapon-xp", label: "10 Hours of Double Account AND Weapon XP Codes", price: 16.99 },
+  { id: "10h-weapon-xp", label: "10 Hours of Double Account AND Weapon XP Codes", price: 16.00 },
 ]
 
 export function usePricing(product: Product | null) {
