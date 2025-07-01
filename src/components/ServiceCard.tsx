@@ -1,7 +1,6 @@
 "use client";
 
 import OptimizedImage from "@/utils/OptimizedImage";
-import type React from "react";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";

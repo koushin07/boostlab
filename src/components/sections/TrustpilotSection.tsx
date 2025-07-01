@@ -1,6 +1,5 @@
 import React from "react";
 import type { Testimonial } from "@/pages/Index";
-import TrustBox from "../TrustPilotContainer";
 import OptimizedImage from "@/utils/OptimizedImage";
 
 interface TrustpilotProps {
