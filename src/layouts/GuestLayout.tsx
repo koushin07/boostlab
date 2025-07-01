@@ -1,145 +1,173 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect, useRef } from "react"
-import { Outlet, Link, useLocation, useNavigate } from "react-router-dom"
-import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
-import DiscordIcon from "@/components/icons/discord"
-import OptimizedImage from "@/utils/OptimizedImage"
-import GuestFooter from "@/components/GuestFooter"
+import { useState, useEffect, useRef } from "react";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import DiscordIcon from "@/components/icons/discord";
+import OptimizedImage from "@/utils/OptimizedImage";
+import GuestFooter from "@/components/GuestFooter";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export interface NavItem {
-  name: string
-  href: string
-  sectionIndex: number
+  name: string;
+  href: string;
+  sectionIndex: number;
 }
 
 export default function GuestLayout() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const location = useLocation()
-  const navigate = useNavigate()
-  const sectionsRef = useRef<HTMLElement[]>([])
-  const hasNavigatedToHash = useRef(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const sectionsRef = useRef<HTMLElement[]>([]);
+  const hasNavigatedToHash = useRef(false);
   const sectionMap: { [key: string]: number } = {
     home: 0,
     reviews: 1,
     services: 2,
     "how-to-order": 4,
-  }
+  };
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    // Add/remove mobile class to body
+    if (isMobile) {
+      document.body.style.paddingBottom = "100px";
+    } else {
+      document.body.style.paddingBottom = "";
+    }
+
+    return () => {
+      // Clean up on unmount
+      document.body.style.paddingBottom = "";
+    };
+  }, [isMobile]);
+
   // Smooth scroll to section
   const scrollToSection = (href: string) => {
     if (href === "/") {
       // Scroll to top for home
-      window.scrollTo({ top: 0, behavior: "smooth" })
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else if (href.startsWith("/#")) {
       // Extract the ID from href (remove "/#")
-      const sectionId = href.substring(2)
-      const element = document.getElementById(sectionId)
+      const sectionId = href.substring(2);
+      const element = document.getElementById(sectionId);
 
       if (element) {
         element.scrollIntoView({
           behavior: "smooth",
           block: "start",
-        })
+        });
         // Find the navItem with this sectionId and set its sectionIndex
       }
     }
-  }
+  };
 
   const navItems: NavItem[] = [
     { name: "Home", href: "/", sectionIndex: 0 },
     { name: "Reviews", href: "/#reviews", sectionIndex: 1 },
     { name: "Services", href: "/#services", sectionIndex: 2 },
     { name: "How to Order", href: "/#how-to-order", sectionIndex: 4 },
-  ]
+  ];
 
   // Handle hash navigation - works from any page
   useEffect(() => {
     if (location.hash && !hasNavigatedToHash.current) {
-      const sectionName = location.hash.substring(1)
+      const sectionName = location.hash.substring(1);
       // Map section names to indices
 
-      const sectionIndex = sectionMap[sectionName]
-      console.log(sectionIndex)
+      const sectionIndex = sectionMap[sectionName];
+      console.log(sectionIndex);
 
       if (sectionIndex !== undefined) {
         if (location.pathname === "/") {
           // Already on home page, scroll to section
           const scrollToHashSection = () => {
             if (sectionsRef.current[sectionIndex]) {
-              scrollToSection(sectionName)
-              hasNavigatedToHash.current = true
+              scrollToSection(sectionName);
+              hasNavigatedToHash.current = true;
             } else {
-              setTimeout(scrollToHashSection, 100)
+              setTimeout(scrollToHashSection, 100);
             }
-          }
-          setTimeout(scrollToHashSection, 300)
+          };
+          setTimeout(scrollToHashSection, 300);
         } else {
           // Not on home page, navigate to home with hash
-          navigate(`/#${sectionName}`, { replace: true })
-          hasNavigatedToHash.current = true
+          navigate(`/#${sectionName}`, { replace: true });
+          hasNavigatedToHash.current = true;
         }
       }
     }
-  }, [location.hash, location.pathname, navigate])
+  }, [location.hash, location.pathname, navigate]);
 
   // Reset navigation flag when location changes
   useEffect(() => {
-    hasNavigatedToHash.current = false
-  }, [location.pathname, location.hash])
+    hasNavigatedToHash.current = false;
+  }, [location.pathname, location.hash]);
 
   // Handle navigation clicks
   const handleNavClick = (e: React.MouseEvent, item: NavItem) => {
     if (item.href.startsWith("/#")) {
-      e.preventDefault()
+      e.preventDefault();
 
-      const sectionName = item.href.substring(2) // Remove "/#"
+      const sectionName = item.href.substring(2); // Remove "/#"
 
       if (location.pathname === "/") {
         // Already on home page, just scroll to section
-        scrollToSection(item.href)
+        scrollToSection(item.href);
         // Update URL without triggering navigation
-        window.history.pushState(null, "", `/#${sectionName}`)
+        window.history.pushState(null, "", `/#${sectionName}`);
       } else {
         // Navigate to home page with hash
-        navigate(`/#${sectionName}`)
+        navigate(`/#${sectionName}`);
       }
     }
 
     // Close mobile menu
-    setMobileMenuOpen(false)
-  }
+    setMobileMenuOpen(false);
+  };
 
   // Handle mobile navigation clicks
-  const handleMobileNavClick = (e: React.MouseEvent, item: (typeof navItems)[0]) => {
+  const handleMobileNavClick = (
+    e: React.MouseEvent,
+    item: (typeof navItems)[0]
+  ) => {
     if (item.href.startsWith("/#")) {
-      e.preventDefault()
+      e.preventDefault();
 
-      const sectionName = item.href.substring(2)
+      const sectionName = item.href.substring(2);
 
       if (location.pathname === "/") {
         // Already on home page, just scroll to section
-        scrollToSection(item.href)
-        window.history.pushState(null, "", `/#${sectionName}`)
+        scrollToSection(item.href);
+        window.history.pushState(null, "", `/#${sectionName}`);
       } else {
         // Navigate to home page with hash
-        navigate(`/#${sectionName}`)
+        navigate(`/#${sectionName}`);
       }
     }
 
-    setMobileMenuOpen(false)
-  }
-
+    setMobileMenuOpen(false);
+  };
+  const redirectToDiscord = () => {
+    window.open("https://discord.com/invite/boostlab", "_blank");
+  };
   return (
     <div className="min-h-screen text-white flex flex-col overflow-x-hidden relative">
       {/* Floating Discord Widget */}
-      <div className="fixed bottom-6 right-6 z-50  delay-2000">
-        <a href="https://discord.gg/boostlab" target="_blank" rel="noopener noreferrer">
-          <Button className="bg-indigo-600 cursor-pointer hover:bg-indigo-700 text-white rounded-full py-5 shadow-lg">
-            <DiscordIcon className="h-8 w-8" />
-            <span className="ml-2 font-primary hidden md:inline">Join Discord</span>
+      <div className="fixed bottom-8 md:bottom-6 right-7 md:right-6  z-50  delay-2000">
+        <a
+          href="https://discord.com/invite/boostlab"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button className="bg-indigo-600 scale-125 md:scale-100 cursor-pointer hover:bg-indigo-700 text-white rounded-full py-5 shadow-lg">
+            <DiscordIcon className=" h-14 scale-110 md:scale-100 w-8" />
+            <span className="ml-2 font-primary hidden md:inline">
+              Join Discord
+            </span>
           </Button>
         </a>
       </div>
@@ -147,15 +175,15 @@ export default function GuestLayout() {
       {/* Enhanced Sticky Navigation */}
       <header className="sticky top-0 z-50 w-full bg-slate-900/95 backdrop-blur-md border-b border-slate-700/50 shadow-lg">
         <div className="container mx-auto py-4 px-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 ">
             <div className="relative overflow-hidden rounded-lg">
               <OptimizedImage
                 alt="Boost Lab"
                 src="/BoostLab/Artboard-3-100.jpg"
                 className="h-12 lg:w-22 text-primary transition-all duration-500 drop-shadow-lg"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-purple-500/30 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm -z-10"></div>
-              <div className="absolute inset-0 bg-primary/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-purple-500/30 rounded-lg opacity-0  transition-all duration-500 blur-sm -z-10"></div>
+              <div className="absolute inset-0 bg-primary/10 rounded-lg opacity-0  transition-all duration-300"></div>
             </div>
           </Link>
 
@@ -166,8 +194,7 @@ export default function GuestLayout() {
                 to={item.href}
                 key={index}
                 onClick={(e) => handleNavClick(e, item)}
-                className={`transition-all duration-300 cursor-pointer relative group font-medium
-text-white hover:text-primary
+                className={`transition-all duration-300 cursor-pointer relative group font-medium text-white hover:text-primary
                     `}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -205,12 +232,20 @@ text-white hover:text-primary
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="text-white hover:text-primary hover:bg-slate-800/50 p-2"
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </Button>
           </div>
 
           {/* Desktop Discord Button */}
-          <a href="https://discord.gg/boostlab" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://discord.gg/boostlab"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button className="hidden lg:flex bg-indigo-600 hover:bg-indigo-700 text-white rounded-full hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/25 font-semibold group">
               <DiscordIcon className="mr-2 h-4 w-4 group-hover:animate-pulse" />
               Discord
@@ -232,7 +267,11 @@ text-white hover:text-primary
                   {item.name}
                 </Link>
               ))}
-              <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full mt-4 font-semibold group">
+
+              <Button
+                onClick={redirectToDiscord}
+                className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full mt-4 font-semibold group"
+              >
                 <DiscordIcon className="mr-2 h-4 w-4 group-hover:animate-pulse" />
                 Discord
               </Button>
@@ -249,5 +288,5 @@ text-white hover:text-primary
       {/* Enhanced Footer */}
       <GuestFooter />
     </div>
-  )
+  );
 }

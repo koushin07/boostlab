@@ -14,7 +14,8 @@ import useImagePreloader from "@/utils/ImagePreloader";
 import { LoadingScreen } from "@/components/loadingScreen";
 import FeedbackSection from "@/components/sections/FeedbackSection";
 import { useLocation } from "react-router-dom";
-import type { Products } from "@/types/products";
+import type { Product } from "@/types/products";
+
 
 
 export interface Testimonial {
@@ -155,77 +156,85 @@ export interface Step {
 // ];
 
 const testimonials: Testimonial[] = [
-  { comment: "very nice", name: "will smith", star: 4, title: "love it" },
   {
-    comment: "Absolutely amazing service and quality.",
-    name: "Emma Johnson",
+    comment: "Quick, easy, and trustworthy. Got my Orion camo in just 2 days!",
+    name: "Will Smith",
     star: 5,
-    title: "Highly recommend!",
+    title: "Very impressive!",
   },
   {
-    comment: "Good, but shipping was a bit slow.",
+    comment: "Absolutely amazing service and top-tier communication. Highly recommend.",
+    name: "Emma Johnson",
+    star: 5,
+    title: "Smooth and professional",
+  },
+  {
+    comment: "Boosting was great, but I wish updates came more frequently.",
     name: "Liam Brown",
+    star: 3,
+    title: "Okay experience",
+  },
+  {
+    comment: "Exceeded my expectations. The booster even finished early!",
+    name: "Olivia Davis",
+    star: 5,
+    title: "Fantastic results",
+  },
+  {
+    comment: "The camo was unlocked as promised, but I expected more updates.",
+    name: "Noah Wilson",
+    star: 3,
+    title: "Decent service",
+  },
+  {
+    comment: "Support team was friendly and answered all my questions.",
+    name: "Sophia Miller",
+    star: 4,
+    title: "Reliable and helpful",
+  },
+  {
+    comment: "Didn’t fully match my expectations, but the job got done.",
+    name: "James Taylor",
     star: 3,
     title: "Mixed feelings",
   },
   {
-    comment: "Exceeded my expectations!",
-    name: "Olivia Davis",
-    star: 5,
-    title: "Perfect experience",
-  },
-  {
-    comment: "Product was okay, not great.",
-    name: "Noah Wilson",
-    star: 2,
-    title: "Average",
-  },
-  {
-    comment: "Friendly support and great quality.",
-    name: "Sophia Miller",
-    star: 4,
-    title: "Satisfied",
-  },
-  {
-    comment: "Not what I expected, sadly.",
-    name: "James Taylor",
-    star: 2,
-    title: "Disappointed",
-  },
-  {
-    comment: "Would definitely buy again.",
+    comment: "Second time ordering and still perfect. Highly recommended!",
     name: "Isabella Moore",
     star: 5,
-    title: "Repeat customer",
+    title: "Loyal customer",
   },
   {
-    comment: "Everything was smooth and quick.",
+    comment: "Fast service. Everything went smoothly and was handled with care.",
     name: "Lucas Anderson",
     star: 4,
-    title: "Great service",
+    title: "Great experience",
   },
   {
-    comment: "Five stars! Nothing less.",
+    comment: "Outstanding! My account feels like a whole new level now.",
     name: "Mia Thomas",
     star: 5,
-    title: "Top-notch",
+    title: "Top-tier boosting",
   },
 ];
 
 export default function IndexPage() {
   const { hash } = useLocation();
-  const [ lobbies, setLobbies] = useState<Products[]>([]);
-  const [ camos, setCamos] = useState<Products[]>([]);
+  const [ lobbies, setLobbies] = useState<Product[]>([]);
+  const [ camos, setCamos] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("Bot Lobbies");
   const sectionsRef = useRef<HTMLElement[]>([]);
   const mascotRef = useRef<HTMLDivElement>(null);
   const hasScrolledToHash = useRef(false);
+
 
   // Collect all image URLs for preloading
   const imageUrls = [
     "/images/cod-hero-bg.jpg",
     "/images/discorted-mascot.png",
     "/BoostLab/Artboard-3-100.jpg",
+    "desktop.png",
+    "mobile.png",
     ...lobbies.map((lobby) => lobby.image),
     ...camos.map((camo) => camo.image),
   ];
@@ -235,7 +244,8 @@ export default function IndexPage() {
   const { imagesLoaded, loadingProgress } = useImagePreloader(imageUrls);
 
   useEffect(() => {
-    axios.get<Products[]>("/data/products.json").then((res) => {
+    axios.get<Product[]>("/data/products.json").then((res) => {
+      console.log(res.data)
       setLobbies(res.data.filter((lobby) => lobby.type === "boost"));
       setCamos(res.data.filter((lobby) => lobby.type === "camo"));
     })

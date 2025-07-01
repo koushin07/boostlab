@@ -2,6 +2,7 @@ import OptimizedImage from "@/utils/OptimizedImage";
 import React, { useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import { Play, Zap } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface HeroSectionProps {
   sectionsRef: React.RefObject<HTMLElement[]>;
@@ -10,7 +11,7 @@ interface HeroSectionProps {
 }
 const HeroSection = ({ sectionsRef, scrollToSection }: HeroSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
-
+  const isMobile = useIsMobile();
   useEffect(() => {
     if (sectionRef.current) {
       sectionsRef.current[0] = sectionRef.current;
@@ -26,11 +27,15 @@ const HeroSection = ({ sectionsRef, scrollToSection }: HeroSectionProps) => {
       <div className="absolute inset-0 z-0">
         <div className="relative w-full h-full">
           <OptimizedImage
-            src="/images/cod-hero-bg.jpg"
+            src={isMobile ? "mobile.png" : "desktop.png"}
             alt="Call of Duty Background"
-            className="absolute inset-0 w-full h-full object-cover transform-gpu scale-100"
+            className={`absolute inset-0 w-full h-full ${isMobile ? "object-fill object-center" : "object-cover"}  transform-gpu scale-100`}
             style={{
-              filter: "brightness(1.5) contrast(1.2) hue-rotate(200deg)",
+              ...(isMobile
+                ? {
+                    filter: "brightness(2.5) contrast(1.4) hue-rotate(200deg)",
+                  }
+                : { filter: "brightness(1.5) contrast(1.2) hue-rotate(200deg)"}),
             }}
           />
         </div>
@@ -57,9 +62,8 @@ const HeroSection = ({ sectionsRef, scrollToSection }: HeroSectionProps) => {
             </span>
           </h1>
           <p className="text-white max-w-md mx-auto lg:mx-0 animate-fadeInUp text-lg leading-relaxed delay-1000">
-            Purchase Professional Call of Duty Black Ops 6 boosting services for
-            Multiplayer, Warzone and Ranked modes. All services offer 5 minute
-            delivery times from our 24/7 support team.
+            All services offer 5 minute delivery times from our 24/7 support
+            team
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Button
@@ -77,7 +81,7 @@ const HeroSection = ({ sectionsRef, scrollToSection }: HeroSectionProps) => {
               className="border-primary text-white hover:bg-blue-500 hover:text-white px-8 py-6 rounded-full text-lg hover:scale-105 transition-all duration-300 animate-fadeInUp font-semibold "
             >
               <Play className="mr- h-5 w-5" />
-             Watch Demo
+              Watch Demo
             </Button>
           </div>
         </div>

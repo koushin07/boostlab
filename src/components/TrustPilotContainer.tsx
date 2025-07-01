@@ -1,4 +1,3 @@
-"use client"
 
 import React from "react"
 
@@ -36,7 +35,7 @@ const TrustBox = () => {
         data-style-width="100%"
         data-theme="dark"
       >
-        <a href="https://www.trustpilot.com/review/mitchcactus.co" target="_blank" rel="noreferrer noopener">
+        <a href="https://www.trustpilot.com/review/boostify.to" target="_blank" rel="noreferrer noopener">
           Trustpilot
         </a>
       </div>

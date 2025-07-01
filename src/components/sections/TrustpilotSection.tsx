@@ -1,7 +1,7 @@
-
 import React from "react";
 import type { Testimonial } from "@/pages/Index";
 import TrustBox from "../TrustPilotContainer";
+import OptimizedImage from "@/utils/OptimizedImage";
 
 interface TrustpilotProps {
   sectionsRef: React.RefObject<HTMLElement[]>;
@@ -9,9 +9,7 @@ interface TrustpilotProps {
   duplicate: Testimonial[];
 }
 
-const TrustpilotSection = ({
-  sectionsRef,
-}: TrustpilotProps) => {
+const TrustpilotSection = ({ sectionsRef }: TrustpilotProps) => {
   return (
     <section
       ref={(el) => {
@@ -23,8 +21,16 @@ const TrustpilotSection = ({
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           {/* Trustpilot Widget using TrustBox component */}
-          <div className="flex justify-center text-xl">
-            <TrustBox />
+          <div className="flex justify-center ">
+            {/* <TrustBox /> */}
+            <a
+              href="https://www.trustpilot.com/review/boostify.to"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="mx-auto md:scale-80"
+            >
+              <OptimizedImage src="trustpilot.png" alt="trustpilot" />
+            </a>
           </div>
 
           {/* Alternative: Simple star rating display using your data */}

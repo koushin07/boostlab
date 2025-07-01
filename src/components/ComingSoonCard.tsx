@@ -1,6 +1,8 @@
 import OptimizedImage from "@/utils/OptimizedImage";
 import { Clock } from "lucide-react";
 import { Button } from "./ui/button";
+import type { Bullet } from "@/types/bullet";
+
 
 interface ComingSoonCardProps {
   title: string;
@@ -9,21 +11,21 @@ interface ComingSoonCardProps {
   type: string;
   price: string;
     tag?: string;
-    icon: React.ReactNode;
-  features: string[];
+
+  bullets: Bullet[];
 }
 const ComingSoonCard = ({
   alt,
   image,
     title,
-  icon,
-  features,
+
+  bullets,
   price,
   tag,
   type,
 }: ComingSoonCardProps) => {
   const getImageContainerClasses = () => {
-    const baseClasses = "relative overflow-hidden rounded-t-lg";
+    const baseClasses = "relative overflow-hidden";
 
     if (type === "camo") {
       // Responsive heights for camo images - taller on larger screens for better detail
@@ -45,6 +47,7 @@ const ComingSoonCard = ({
       return `${baseClasses} object-cover object-[center_40%] sm:object-center`;
     }
   };
+  console.log(bullets)
 
   return (
     <div className="card-gaming border animate-fadeInUp relative overflow-hidden">
@@ -79,9 +82,7 @@ const ComingSoonCard = ({
           </div>
         )}
 
-        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-10 transform group-hover:scale-110">
-          <div className="text-white drop-shadow-lg">{icon}</div>
-        </div>
+
 
         {/* Enhanced hover overlay */}
         <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
@@ -89,10 +90,10 @@ const ComingSoonCard = ({
 
       <div className="p-6 opacity-50">
         <div className="space-y-3 mb-6">
-          {features.map((feature, i) => (
+          {bullets?.map((bullet, i) => (
             <div key={i} className="flex items-center gap-3">
               <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
-              <p className="text-sm text-gray-400">{feature}</p>
+              <p className="text-sm text-gray-400">{bullet.text}</p>
             </div>
           ))}
         </div>

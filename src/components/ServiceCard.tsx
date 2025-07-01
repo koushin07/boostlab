@@ -7,25 +7,26 @@ import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import ComingSoonCard from "./ComingSoonCard";
+import type { Bullet } from "@/types/bullet";
 
 interface ServiceCardProps {
-  id: string;
+  slug: string;
   type: string;
   title: string;
   image: string;
-  icon: React.ReactNode;
+
   alt: string;
   tag?: string;
   price: string;
-  features: string[];
+  bullets: Bullet[];
 }
 
 const ServiceCard = ({
-  id,
+  slug,
   alt,
   type,
-  features,
-  icon,
+  bullets,
+
   image,
   price,
   title,
@@ -34,14 +35,13 @@ const ServiceCard = ({
   const navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = useState(false);
   const isComingSoon = tag?.toLowerCase() === "coming soon";
-
+// console.log(bullets)
   if (isComingSoon) {
     return (
       <ComingSoonCard
-        icon={icon}
+        bullets={bullets}
         tag={tag}
         alt={alt}
-        features={features}
         image={image}
         price={price}
         title={title}
@@ -52,7 +52,7 @@ const ServiceCard = ({
 
   // Determine image container classes based on type and screen size
   const getImageContainerClasses = () => {
-    const baseClasses = "relative overflow-hidden rounded-t-lg";
+    const baseClasses = "relative overflow-hidden ";
 
     if (type === "camo") {
       // Responsive heights for camo images - taller on larger screens for better detail
@@ -66,7 +66,7 @@ const ServiceCard = ({
   // Determine image classes based on type and screen size
   const getImageClasses = () => {
     const baseClasses =
-      "w-full h-full  duration-500 ease-out group-hover:scale-110  transition-transform";
+      "w-full h-full  duration-500 ease-out  group-hover:scale-110  transition-transform";
 
     if (type === "camo") {
       // For camo images: responsive object positioning to show the best part of the camo
@@ -83,7 +83,7 @@ const ServiceCard = ({
 
   return (
     <div
-      className={`card-gaming border hover-lift animate-fadeInUp group relative`}
+      className={`card-gaming border  hover-lift animate-fadeInUp group relative`}
     >
       <div className={getImageContainerClasses()}>
         <OptimizedImage
@@ -108,9 +108,9 @@ const ServiceCard = ({
           </div>
         )}
 
-        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-10 transform group-hover:scale-110">
+        {/* <div className="absolute top-3 left-3 sm:top-4 sm:left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-10 transform group-hover:scale-110">
           <div className="text-white drop-shadow-lg">{icon}</div>
-        </div>
+        </div> */}
 
         {/* Enhanced hover overlay */}
         <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
@@ -123,7 +123,7 @@ const ServiceCard = ({
           </h3>
 
           <div className="space-y-1.5 sm:space-y-2">
-            {features.map((feature, i) => (
+            {bullets.map((bullet, i) => (
               <div key={i} className="flex items-start gap-2 sm:gap-3">
                 <div
                   className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full animate-pulse shadow-sm shadow-accent/50 flex-shrink-0 mt-1.5 sm:mt-2"
@@ -134,7 +134,7 @@ const ServiceCard = ({
                     i === 0 ? "text-accent font-medium" : "text-white/90"
                   }`}
                 >
-                  {feature}
+                  {bullet.text}
                 </p>
               </div>
             ))}
@@ -147,7 +147,7 @@ const ServiceCard = ({
           </span>
 
           <Button
-            onClick={() => navigate(`/product/${id}`)}
+            onClick={() => navigate(`/product/${slug}`)}
             className="btn-primary cursor-pointer bg-primary hover:bg-primary/90 rounded-bl-3xl rounded-tr-3xl text-xs sm:text-sm px-3 sm:px-4 py-2 flex-shrink-0 group/btn transition-all duration-300 ease-out"
           >
             <span className="group-hover/btn:mr-1 sm:group-hover/btn:mr-2 transition-all duration-300">

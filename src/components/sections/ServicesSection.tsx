@@ -4,14 +4,14 @@ import type React from "react"
 import { Button } from "../ui/button"
 import { ArrowRight, Star, Target } from "lucide-react"
 import ServiceCard from "../ServiceCard"
-import type { Products } from "@/types/products"
+import type { Product } from "@/types/products"
 
 interface ServicesSectionProps {
   sectionsRef: React.RefObject<HTMLElement[]>
   setSelectedCategory: (category: React.SetStateAction<string>) => void
   selectedCategory: string
-  lobbies: Products[]
-  camos: Products[]
+  lobbies: Product[]
+  camos: Product[]
 }
 
 const ServicesSection = ({
@@ -80,11 +80,11 @@ const ServicesSection = ({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {lobbies.map((lobby, index) => (
               <ServiceCard
-                id={lobby.id}
+                slug={lobby.slug}
                 type={lobby.type}
                 alt={lobby.alt}
-                features={lobby.features}
-                icon={lobby.icon}
+                bullets={lobby.bullets}
+
                 image={lobby.image}
                 price={lobby.price}
                 title={lobby.title}
@@ -103,11 +103,11 @@ const ServicesSection = ({
             {/* Enhanced Camo Cards */}
             {camos.map((camo, index) => (
               <ServiceCard
-                id={camo.id}
+                slug={camo.slug}
                 type={camo.type}
                 alt={camo.alt}
-                features={camo.features}
-                icon={camo.icon}
+                bullets={camo.bullets}
+
                 image={camo.image}
                 price={camo.price}
                 title={camo.title}

@@ -8,15 +8,28 @@
   }
 }
 
+@keyframes infinite-scroll-mobile {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .animate-infinite-scroll {
   animation: infinite-scroll 40s linear infinite;
+}
+
+.animate-infinite-scroll-mobile {
+  animation: infinite-scroll-mobile 25s linear infinite;
 }
 
 .pause-animation {
   animation-play-state: paused;
 }
 
-.hover\:pause-animation:hover {
+.hover\\:pause-animation:hover {
   animation-play-state: paused;
 }
 
@@ -48,10 +61,31 @@
 
 .scroll-fade-edges::before {
   left: 0;
-  background: linear-gradient(to right, hsl(var(--background)), transparent);
+  background: linear-gradient(to right, var(--background), transparent);
 }
 
 .scroll-fade-edges::after {
   right: 0;
-  background: linear-gradient(to left, hsl(var(--background)), transparent);
+  background: linear-gradient(to left, var(--background), transparent);
+}
+
+/* Media query for mobile centering */
+@media (max-width: 640px) {
+  .animate-infinite-scroll-mobile {
+    animation: infinite-scroll-mobile 25s linear infinite;
+  }
+}
+.crisp-mobile crisp-chatbox,
+.crisp-mobile [data-crisp-website-id],
+.crisp-mobile .crisp-client {
+  transform: scale(0.4) !important;
+}
+
+.crisp-mobile {
+  padding-bottom: 80px !important;
+}
+
+/* More specific targeting for different Crisp elements */
+.crisp-mobile crisp-chatbox iframe {
+  transform: scale(0.4) !important;
 }

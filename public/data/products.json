@@ -1,6 +1,6 @@
 [
   {
-    "id": "dark-matter-camo",
+    "slug": "dark-matter-camo",
     "title": "Dark Matter Camo Unlock",
     "price": "149.99",
     "image": "/camos/Dark_Matter.png",
@@ -8,12 +8,31 @@
     "alt": "Dark Matter Camo",
     "eta": "Same Day",
     "description": "Purchase the Dark Matter Camo Unlock and harness the galaxy itself with this prestigious, animated cosmos-themed skin for your **Black Ops 6** weapons. Our service includes everything you need, from unlocking **Gold, Diamond, and Dark Spine Camos** across all base weapons to completing the final **Dark Matter Camo Challenge**. Skip the endless grinding and let us elevate your arsenal with this highly sought-after camouflage.",
-    "features": ["Unlocked on Your Account", "100% Legitimate Hard Unlock", "Same-Day Completion Time"],
+    "features": [
+      {
+        "text": "**Dark Matter Camo** unlocked for all 33 base weapons"
+      },
+      {
+        "text": "**Gold, Diamond, and Dark Spine Camos** for all 33 base weapons"
+      },
+      {
+        "text": "Lots of Account XP and level progress"
+      },
+      {
+        "text": "Significant **Battle Pass progress** and token rewards"
+      }
+    ],
     "pricing": [
       {
-        "quantity": "1 Camo",
+        "quantity": "Dark Matter Camo Unlock",
         "price": "149.99"
       }
+    ],
+
+    "bullets": [
+      { "text": "Unlocked on Your Account" },
+      { "text": "100% Legitimate Hard Unlock" },
+      { "text": "Same-Day Completion Time" }
     ],
     "achievements": [
       "Complete Dark Matter Camo Challenge",
@@ -59,18 +78,24 @@
     ]
   },
   {
-    "id": "abyss-camo",
+    "slug": "abyss-camo",
     "title": "Abyss Camo Unlock",
     "price": "249.99",
     "image": "/camos/Abyss.png",
     "type": "camo",
     "alt": "Abyss Camo",
-    "eta": "2-4 Days",
+    "eta": "Within the Day",
     "description": "Purchase the Abyss Camo Unlock and unleash the shadows with this rare, animated endgame skin for your **Warzone** arsenal. This dark, otherworldly camo is the ultimate reward in a multi-stage mastery journey, and we'll take care of the entire grind for you. Our expert boosters will unlock **Gold Tiger, King's Ransom, Catalyst**, and finally the **Abyss Camo** on each weapon, saving you months of hardcore gameplay.",
-    "features": ["Unlocked on Your Account", "100% Legitimate Hard Unlock", "2-4 Days Completion Time"],
+    "features": [
+      { "text": "**Abyss Camo** unlocked for all 33 base weapons" },
+      { "text": "**Gold Tiger, King’s Ransom, and Catalyst Camos** for all 33 base weapons" },
+      { "text": "Maximum weapon level for all 33 base weapons" },
+      { "text": "Lots of Account XP and level progress" },
+      { "text": "Significant Battle Pass progress and token rewards" }
+    ],
     "pricing": [
       {
-        "quantity": "1 Camo",
+        "quantity": "Abyss Camo Unlock",
         "price": "249.99"
       }
     ],
@@ -78,6 +103,11 @@
       "Unlock Gold Tiger, King's Ransom, Catalyst",
       "Complete Abyss Camo unlock",
       "All weapons included"
+    ],
+    "bullets": [
+      { "text": "Unlocked on Your Account" },
+      { "text": "100% Legitimate Hard Unlock" },
+      { "text": "Ultra-Fast Completion Time" }
     ],
     "faq": [
       {
@@ -118,18 +148,28 @@
     ]
   },
   {
-    "id": "nebula-camo",
+    "slug": "nebula-camo",
     "title": "Nebula Camo Unlock",
     "price": "279.99",
     "image": "/camos/Nebula.png",
     "type": "camo",
     "alt": "Nebula Camo",
-    "eta": "2-4 Days",
+    "eta": "Within the Day",
     "description": "Purchase the Nebula Camo Unlock and channel the power of the undead with this stunning animated **Zombies** mastery camo for **Black Ops 6**. Nebula is the ultimate reward for completing the Zombies camo grind, which requires unlocking **Mystic Gold, Opal, and Afterlife** skins first. We'll take care of every step, saving you months of battling through the **Dark Aether**.",
-    "features": ["Unlocked on Your Account", "100% Legitimate Hard Unlock", "2-4 Days Completion Time"],
+    "features": [
+      { "text": "**Nebula Camo** unlocked for all 33 base weapons" },
+      { "text": "**Mystic Gold, Opal, and Afterlife Camos** for all 33 base weapons" },
+      { "text": "Maximum weapon level for all 33 base weapons" },
+      { "text": "Significant Battle Pass progress and token rewards" }
+    ],
+    "bullets": [
+      { "text": "Unlocked on Your Account" },
+      { "text": "100% Legitimate Hard Unlock" },
+      { "text": "Ultra-Fast Completion Time" }
+    ],
     "pricing": [
       {
-        "quantity": "1 Camo",
+        "quantity": "Nebula Camo Unlock",
         "price": "279.99"
       }
     ],
@@ -177,7 +217,7 @@
     ]
   },
   {
-    "id": "bot-multiplayer",
+    "slug": "bot-multiplayer",
     "title": "Multiplayer Bot Lobbies",
     "image": "/lobbies/Multiplayer-Bot-Lobbies.png",
     "alt": "Multiplayer",
@@ -185,9 +225,15 @@
     "price": "3.99",
     "description": "Tired of spending all day grinding in Black Ops 6? Our Bot Lobby services are the fastest and safest way to reach your goals. Whether you want to **unlock camos, boost your K/D, or max out weapons**, our bot-filled lobbies make progress effortless. We don’t require any account details, we only ask for your Activision ID, so that you can be invited to our secure lobbies.",
     "features": [
-      "Up to 400 kills per lobby",
-      "Rapid completion of camo challenges and weapon levelling",
-      "K/D increase and rank rewards"
+      { "text": "Up to 400 kills per lobby" },
+      { "text": "Rapid completion of camo challenges and weapon levelling" },
+      { "text": "K/D increase and rank rewards" }
+    ],
+    "bullets": [
+      { "text": "Up to 400 Kills Per Game" },
+      { "text": "Complete Camo Challenges" },
+      { "text": "Level Up Guns Fast" },
+      { "text": "Instant Delivery " }
     ],
     "pricing": [
       {
@@ -260,7 +306,7 @@
     ]
   },
   {
-    "id": "ranked-multiplayer",
+    "slug": "ranked-multiplayer",
     "title": "Multiplayer Ranked Bot Lobbies",
     "image": "/lobbies/Multiplayer-Ranked-Bot-Lobbies.png",
     "alt": "Multiplayer Ranked",
@@ -268,9 +314,15 @@
     "price": "5.99",
     "description": "Tired of spending all day grinding in Black Ops 6 Ranked Play? Our Ranked Bot Lobby services are the fastest and safest way to climb the ladder and gain SR quickly. Whether you want to **increase your rank, improve your stats, or secure rewards**, our bot-filled lobbies make progress effortless. We don’t require any account details, we only ask for your Activision ID, so that you can be invited to our secure lobbies.",
     "features": [
-      "An uncontested ranked win",
-      "Rapid increase in your rank. Bronze to Top 250 supported",
-      "K/D increase and Battle Pass rewards"
+      { "text": "An uncontested ranked win" },
+      { "text": "Rapid increase in your rank. Bronze to Top 250 supported" },
+      { "text": "K/D increase and Battle Pass rewards" }
+    ],
+    "bullets": [
+      { "text": "Gain SR Rapidly" },
+      { "text": "Achieve your Dream Rank" },
+      { "text": "100% Safe and Secure" },
+      { "text": "Instant Delivery " }
     ],
     "pricing": [
       {
@@ -343,7 +395,7 @@
     ]
   },
   {
-    "id": "warzone",
+    "slug": "warzone",
     "title": "Warzone Bot Lobbies",
     "image": "/lobbies/Warzone-Bot-Lobbies.png",
     "alt": "Warzone",
@@ -351,9 +403,15 @@
     "price": "5.99",
     "description": "Tired of spending all day grinding in Warzone? Our Warzone Bot Lobby services are the fastest and safest way to reach your goals. Whether you want to **unlock camos, boost your K/D, or max out weapons**, our bot-filled lobbies make progress effortless. We don’t require any account details, we only ask for your Activision ID, so that you can be invited to our secure lobbies.",
     "features": [
-      "Up to 100 kills per lobby",
-      "Rapid completion of camo challenges and weapon levelling",
-      "K/D increase and Battle Pass rewards"
+      { "text": "Up to 100 kills per lobby" },
+      { "text": "Rapid completion of camo challenges and weapon levelling" },
+      { "text": "K/D increase and Battle Pass rewards" }
+    ],
+    "bullets": [
+      { "text": "Up to 400 Kills Per Game" },
+      { "text": "Complete Camo Challenges" },
+      { "text": "Level Up Guns Fast" },
+      { "text": "Instant Delivery " }
     ],
     "pricing": [
       {
@@ -425,7 +483,7 @@
     ]
   },
   {
-    "id": "warzone-ranked",
+    "slug": "warzone-ranked",
     "title": "Warzone Ranked Bot lobbies",
     "image": "/lobbies/Warzone-Ranked-Bot-Lobbies.png",
     "alt": "Warzone Rank",
@@ -433,7 +491,16 @@
     "tag": "Coming Soon",
     "price": "9.99",
     "description": "Get ready for the ultimate **Warzone Ranked** experience! Our upcoming Warzone Ranked Bot Lobby service will be the fastest and safest way to climb the competitive ladder. Whether you want to **increase your rank, improve your stats, or secure exclusive rewards**, our bot-filled lobbies will make progress effortless. Stay tuned for updates on this exciting new service!",
-    "features": ["Compete at higher levels", "Earn rewards and badges", "Exclusive ranked content"],
+    "features": [
+      { "text": "Compete at higher levels" },
+      { "text": "Earn rewards and badges" },
+      { "text": "Exclusive ranked content" }
+    ],
+    "bullets": [
+      { "text": "Unlocked on Your Account" },
+      { "text": "100% Legitimate Hard Unlock" },
+      { "text": "Same-Day Completion Time" }
+    ],
     "pricing": [
       {
         "quantity": "1 Bot Lobby",
@@ -452,7 +519,11 @@
         "price": "69.99"
       }
     ],
-    "achievements": ["Compete at higher levels", "Earn rewards and badges", "Exclusive ranked content"],
+    "achievements": [
+      "Compete at higher levels",
+      "Earn rewards and badges",
+      "Exclusive ranked content"
+    ],
     "faq": [
       {
         "question": "When will Warzone Ranked Bot Lobbies be available?",
